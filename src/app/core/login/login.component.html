@@ -1,61 +1,97 @@
 
-<html><head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-    <link rel="icon" href="images/favicon.ico">
 
-	<title>Kuantan Port - MTOS</title>
+<html>
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+  <link rel="icon" href="images/favicon.ico">
+<title>Kuantan Port - MTOS</title>
+</head>
 
-	<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+<body class="text-center">
+  <section>
+      <div class="bg-login">
+          <form class="form-signin1" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <h1 class="h3 mb-3 font-weight-normal" style="padding-right: 50px;"><img  style="width: 250px;padding-top: 25px;" src="assets/css/images/iTAP-logo.png" class="image logo"></h1>
+              <h4 class="subtitle1">TERMINAL AUTOMATION AND PLANNING SOLUTIONS</h4>
+              <div class="loginbox">
+                  <div class="">
+                      <label style="display: inline-block;margin-top: 0.5rem;float: left;">Username</label>
+                      <input type="text" class="form-control" [(ngModel)]="username" placeholder="User name" formControlName="username" autofill="false" [ngClass]="{ 'is-invalid': loginForm.controls['username'].touched && loginForm.controls['username'].invalid }">
+                      <div *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].invalid" class="alert">
+                          <div *ngIf="loginForm.controls['username'].errors && loginForm.controls['username'].errors['required']">Username is required.</div>
+                      </div>
+                  </div>
 
-	<link href="css/login.css" rel="stylesheet">
-	<link href="css/floating-labels.css" rel="stylesheet"> -->
+                  <div class="">
+                      <label style="display: inline-block;margin-top: 0.5rem;float: left;">Password</label>
+                      <input type="password" class="form-control" placeholder="Password" formControlName="password" autofill="false" [ngClass]="{ 'is-invalid': loginForm.controls['password'].touched && loginForm.controls['password'].invalid }">
+                      <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid" class="alert">
+                          <div *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']">Password is required.</div>
+                      </div>
+                  </div>
+                  <div style="text-align: center;">
+                      <button style="margin-top: 16px;width: 130px" type="submit" class="btn btn-primary">Log In</button>
+                  </div>
+
+                  <div align="right">
+                  <br>
+                  <h4 color="#2E2E2E" style="font-size: 12px;">Version 1.38.5</h4>
+                  </div>
+              </div>
+              <!-- <img class="mb-4 ijm_logo" src="assets/css/images/ijm_logo.png"> -->
+              <p class="mt-1 text-white small copyright" style="text-align: center;">© Copyright Privaports Sdn Bhd. All Rights Reserved.</p>
+          </form>
+      </div>
+  </section>
+
+</body>
+</html>
+
+
+
+<!-- <html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+  <link rel="icon" href="images/favicon.ico">
+<title>Kuantan Port - MTOS</title>
 </head>
 
 <body class="text-center" style="background-color: #002684;">
-    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-	<!-- <form class="form-signin" action="j_spring_security_check" method="POST"> -->
-		<h1 class="h3 mb-3 font-weight-normal"><img  style="width: 420px;" src="assets/css/images/logo.png" class="image logo"></h1>
-		<h4 class="subtitle">MULTIPURPOSE TERMINAL OPERATING SYSTEM
-			(MTOS)</h4>
-		<div class="loginbox">
-			<!-- <div class="">
-                <h4 color="#2E2E2E" style="font-size: 12px;">Key in your Username &amp; Password</h4>
-			</div> -->
-			<div class="">
-                <label style="display: inline-block;margin-top: 0.5rem;float: left;">Username</label>
-				<input type="text" class="form-control" [(ngModel)]="username" placeholder="User name" formControlName="username" autofill="false" [ngClass]="{ 'is-invalid': loginForm.controls['username'].touched && loginForm.controls['username'].invalid }">
-                <div *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].invalid" class="alert">
-                    <div *ngIf="loginForm.controls['username'].errors && loginForm.controls['username'].errors['required']">Username is required.</div>
-                </div>
-            </div>
+  <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h1 class="h3 mb-3 font-weight-normal"><img  style="width: 420px;" src="assets/css/images/logo.png" class="image logo"></h1>
+  <h4 class="subtitle">MULTIPURPOSE TERMINAL OPERATING SYSTEM
+    (MTOS)</h4>
+  <div class="loginbox">
+    <div class="">
+              <label style="display: inline-block;margin-top: 0.5rem;float: left;">Username</label>
+      <input type="text" class="form-control" [(ngModel)]="username" placeholder="User name" formControlName="username" autofill="false" [ngClass]="{ 'is-invalid': loginForm.controls['username'].touched && loginForm.controls['username'].invalid }">
+              <div *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].invalid" class="alert">
+                  <div *ngIf="loginForm.controls['username'].errors && loginForm.controls['username'].errors['required']">Username is required.</div>
+              </div>
+          </div>
 
-			<div class="">
-                <label style="display: inline-block;margin-top: 0.5rem;float: left;">Password</label>
-				<input type="password" class="form-control" placeholder="Password" formControlName="password" autofill="false" [ngClass]="{ 'is-invalid': loginForm.controls['password'].touched && loginForm.controls['password'].invalid }">
-                <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid" class="alert">
-                    <div *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']">Password is required.</div>
-                </div>
-            </div>
-			<!-- <table style="margin: auto">
-				<tbody><tr>                
-                <td align="center"><input class="login_btn" type="image" name="login" value="Login" src="resources/images/login/btn_login.png"></td>              
-              </tr>
-			</tbody></table> -->
+    <div class="">
+              <label style="display: inline-block;margin-top: 0.5rem;float: left;">Password</label>
+      <input type="password" class="form-control" placeholder="Password" formControlName="password" autofill="false" [ngClass]="{ 'is-invalid': loginForm.controls['password'].touched && loginForm.controls['password'].invalid }">
+              <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid" class="alert">
+                  <div *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']">Password is required.</div>
+              </div>
+          </div>
 
-            <!-- <button style="margin-top: 16px;width: 130px" [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Log In</button>			 -->
-            <button style="margin-top: 16px;width: 130px" type="submit" class="btn btn-primary">Log In</button>			
+          <button style="margin-top: 16px;width: 130px" type="submit" class="btn btn-primary">Log In</button>
 
-			<div align="right">
-			<br>
-			<h4 color="#2E2E2E" style="font-size: 12px;">Version 1.38.5</h4>
-			</div>
-		</div>
-		<img class="mb-4 ijm_logo" src="assets/css/images/ijm_logo.png">
-		<p class="mt-1 text-white small copyright">© West Port Consortium Sdn Bhd, Malaysia. All rights reserved.</p>
-	</form>
-	
-</body></html>
+    <div align="right">
+    <br>
+    <h4 color="#2E2E2E" style="font-size: 12px;">Version 1.38.5</h4>
+    </div>
+  </div>
+  <img class="mb-4 ijm_logo" src="assets/css/images/ijm_logo.png">
+  <p class="mt-1 text-white small copyright">© Westports Malaysia Sdn Bhd, Malaysia. All rights reserved.</p>
+</form>
+
+</body></html> -->

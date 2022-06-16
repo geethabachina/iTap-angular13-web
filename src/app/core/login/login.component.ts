@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup,FormControl, Validators,FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    ) 
+    )
     {
       this.loginForm = this.formBuilder.group({
           username: ['', Validators.required],
