@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
       }
       return;
     }
-    alert('SUCCESS!!');
+    //alert('SUCCESS!!');
+    this.router.navigate(['dashboard']);
   }
 
 

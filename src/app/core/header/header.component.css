@@ -239,7 +239,11 @@ a{
 .badge{
   font-size: 64%;
 }
-
+.badge {
+  color: white;
+  background-color: #e27474;
+  float: left;
+}
 
 .header-title{
   font-size: 16px;

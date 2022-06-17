@@ -1,4 +1,4 @@
-<nav id="custella-header" class="navbar-expand-md top-nav main-header">
+<nav id="header" class="navbar-expand-md top-nav main-header">
   <div class="navbar-collapse d-flex">
       <div class="nav-item d-flex align-items-center">
         <button class="unbutton px-0" type="button">
@@ -22,14 +22,14 @@
           <a class="nav-link icon-bord" id="bell" style="height: 30px; padding: 4px 1rem;">
               <div class="" id="bell" style="line-height: 1;">
                   <i class="fa fa-bell-o" id="bell" style="line-height: 1; font-size: 20px;"></i>
-                  <span class="badge custella-badge" id="bell">20</span>
+                  <span class="badge badge" id="bell">20</span>
               </div>
           </a>
       </li>
       <li class="nav-item dropdown user-profile-menu" id="rightBarButton">
           <a class="nav-item nav-link dropdown-toggle mr-md-2 hand " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img class="map-card-image" [src]="photoUrl">
-              <div class="on-status"></div>
+              <!-- <div class="on-status"></div> -->
               <span class="pl-2 d-none d-lg-inline username-text">Geetha</span>
           </a>
           <div style="min-width: 18rem; border-radius:16px;" class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="bd-versions">
@@ -45,11 +45,11 @@
                   </div>
               </a>
               <!-- <a class="dropdown-item border-bottom-0 pl-4 py-2 d-flex align-items-center" routerLinkActive="active" routerLink="/dashboard/profile/mySettings">
-                  <i class="custella-icon icon-profile" style="height: 1.5rem;"></i>
+                  <i class="icon-profile" style="height: 1.5rem;"></i>
                   <p class="pl-3 text-2 mb-0">my profile</p>
               </a> -->
-              <a class="border-bottom-0 dropdown-item pl-4 pb-3 pt-3 drop-down-bottom-border hand d-flex align-items-center">
-                  <i class="custella-icon icon-check-in text-red" style="height: 1.5rem;"></i>
+              <a class="border-bottom-0 dropdown-item pl-4 pb-3 pt-3 drop-down-bottom-border hand d-flex align-items-center" routerLinkActive="active" routerLink="/login">
+                  <i class="icon-check-in text-red" style="height: 1.5rem;"></i>
                   <p class="pl-2 text-2 mb-0" style="color: #f39d9d;">logout</p>
               </a>
           </div>
