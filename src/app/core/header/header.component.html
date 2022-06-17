@@ -1,0 +1,58 @@
+<nav id="custella-header" class="navbar-expand-md top-nav main-header">
+  <div class="navbar-collapse d-flex">
+      <div class="nav-item d-flex align-items-center">
+        <button class="unbutton px-0" type="button">
+          <img class="mr-2 hand" style="height: 12px;" (click)="toggleSideBar()" src="../../../../assets/css/images/collapse-img.png" alt="">
+        </button>
+      </div>
+  </div>
+
+  <ul class="nav justify-content-end col-sm-5 col-md-7 pr-0">
+      <li class="nav-item  d-none d-flex align-items-center" id="rightBarButton">
+          <a class="nav-link icon-bord" style="padding: 5px 1rem;" routerLink="/dashboard/messages/employees" id="rightBarButton">
+            <div class="search-container">
+              <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          </a>
+      </li>
+      <li class="nav-item  d-none d-flex align-items-center" id="bell">
+          <a class="nav-link icon-bord" id="bell" style="height: 30px; padding: 4px 1rem;">
+              <div class="" id="bell" style="line-height: 1;">
+                  <i class="fa fa-bell-o" id="bell" style="line-height: 1; font-size: 20px;"></i>
+                  <span class="badge custella-badge" id="bell">20</span>
+              </div>
+          </a>
+      </li>
+      <li class="nav-item dropdown user-profile-menu" id="rightBarButton">
+          <a class="nav-item nav-link dropdown-toggle mr-md-2 hand " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="map-card-image" [src]="photoUrl">
+              <div class="on-status"></div>
+              <span class="pl-2 d-none d-lg-inline username-text">Geetha</span>
+          </a>
+          <div style="min-width: 18rem; border-radius:16px;" class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="bd-versions">
+              <a class="dropdown-item py-3 px-4 drop-down-top-border">
+                  <div class="d-flex">
+                      <div class="col-3 p-0">
+                          <img class="profile-card-image" [src]="photoUrl">
+                      </div>
+                      <div class="col p-0 transform-y-10">
+                          <div class="pl-2 text-2 font-weight-bold text-muted elip" style="width: 185px;">Geetha Gaddipati</div>
+                          <div class="pl-2 text-2 font-weight-light text-secondary">geetha@gmail.com</div>
+                      </div>
+                  </div>
+              </a>
+              <!-- <a class="dropdown-item border-bottom-0 pl-4 py-2 d-flex align-items-center" routerLinkActive="active" routerLink="/dashboard/profile/mySettings">
+                  <i class="custella-icon icon-profile" style="height: 1.5rem;"></i>
+                  <p class="pl-3 text-2 mb-0">my profile</p>
+              </a> -->
+              <a class="border-bottom-0 dropdown-item pl-4 pb-3 pt-3 drop-down-bottom-border hand d-flex align-items-center">
+                  <i class="custella-icon icon-check-in text-red" style="height: 1.5rem;"></i>
+                  <p class="pl-2 text-2 mb-0" style="color: #f39d9d;">logout</p>
+              </a>
+          </div>
+      </li>
+  </ul>
+</nav>

@@ -17,6 +17,8 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -32,13 +34,14 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
     RouterModule,
-    AppRoutingModule 
+    AppRoutingModule
   ],
-  
+
   providers: [],
   bootstrap: [AppComponent]
 })
