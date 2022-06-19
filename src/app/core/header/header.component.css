@@ -1,4 +1,10 @@
 /* ////////////////////////////////// */
+
+/* CSS Start */
+.notify{left: 24px;top: 4px;}
+.dropdown-menu{box-shadow: 0px 5px 10px rgba(0,0,0,0.15) !important;border: none;}
+.main-header{position: absolute;left: 250px;right: 0;}
+/* CSS END*/
 a{
   color: #a4aaad;
 }
@@ -53,9 +59,8 @@ a{
 .top-nav
 {
   display: flex;
-  padding-top: 6px;
+  padding-top: 8px;
   padding-bottom: 1px;
-  height: 52px;
   background-color: #2A3A43;
   flex-grow: 1;
 }
