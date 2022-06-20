@@ -31,9 +31,9 @@
             >
               <ul *ngIf="submenu.submenu" class="flex-column nav">
                 <li *ngFor="let submenu2 of submenu.submenu" class="nav-item">
-                  <a class="nav-link p-1 text-truncate">
+                  <!-- routerLinkActive="active" routerLink="/core/admin/userGroup" -->
+                  <a class="nav-link p-1 text-truncate" routerLinkActive="active" routerLink="/{{submenu2.url}}">
                     <i [class]="submenu2.iconClass"></i>{{ submenu2.name }}
-                    <!-- <i [class]="submenu2.iconClass"></i> <a routerLinkActive="active" routerLink="/dashboard/admin/userGroup" >{{ submenu2.name }}</a> -->
                   </a>
                 </li>
               </ul>

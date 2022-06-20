@@ -18,15 +18,16 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
-
 import { RouterModule, Routes } from '@angular/router';
+
 import { LoginComponent } from './core/login/login.component';
 import { MenuComponent } from './core/menu/menu.component';
-import { DashboardComponent } from './core/dashboard/dashboard.component';
+// import { DashboardComponent } from './core/dashboard/dashboard.component';
 import { AdminComponent } from './core/admin/admin.component';
 import { UserGroupComponent } from './core/admin/user-group/user-group.component';
 import { ShipParticularComponent } from './core/planning/ship-particular/ship-particular.component';
 import { PlanningComponent } from './core/planning/planning.component';
+import { CoreComponent } from './core/core.component';
 
 
 const adminRoutes: Routes = [
@@ -57,8 +58,10 @@ const routes: Routes = [
     component: MenuComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    // path: 'dashboard',
+    // component: DashboardComponent,
+    path: 'core',
+    component: CoreComponent,
     children: [
       // {
       //   path: '',

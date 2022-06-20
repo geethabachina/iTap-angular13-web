@@ -20,15 +20,15 @@ export class MenuComponent implements OnInit {
     // },
     { name: "Administration", iconClass: "fa fa-wrench",active: false,
       submenu: [
-        { name: "User Administration", url: "#",submenu: [
-          { name: "User Groups",iconClass: "fa fa-users", url: "/admin/userGroup" },
+        { name: "User Administration",submenu: [
+          { name: "User Groups",iconClass: "fa fa-users", url: "core/admin/userGroup" },
           { name: "User Roles",iconClass: "fa fa-cogs", url: "#" },
           { name: "Users",iconClass: "fa fa-user", url: "#" },
           { name: "User Matrix Report",iconClass: "fa fa-id-card-o", url: "#" }
          ]
         },
-        { name: "Planning", url: "#",submenu: [
-          { name: "Ship", iconClass: "fa fa-clock-o", url: "/planning/shipParticular" },
+        { name: "Planning",submenu: [
+          { name: "Ship", iconClass: "fa fa-clock-o", url: "core/planning/shipParticular" },
           { name: "Designation", iconClass: "fa fa-suitcase", url: "#" },
           { name: "Type of Leave", iconClass: "fa fa-server", url: "#" },
          ]

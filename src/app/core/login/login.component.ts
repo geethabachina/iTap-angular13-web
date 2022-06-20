@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     //alert('SUCCESS!!');
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['core']);
   }
 
 
