@@ -2,7 +2,8 @@
   <div class="navbar-collapse d-flex">
       <div class="nav-item d-flex align-items-center pl-4">
         <button class="unbutton px-0" type="button">
-          <img class="mr-2 hand" style="height: 12px;" (click)="toggleSideBar()" src="../../../../assets/css/images/collapse-img.png" alt="">
+          <img *ngIf="bigMenu" class="mr-2 hand" style="height: 12px;" (click)="toggleSideBar()" src="../../../../assets/css/images/box.png" alt="">
+          <img *ngIf="!bigMenu" class="mr-2 hand" style="height: 12px;" (click)="toggleSideBar()" src="../../../../assets/css/images/collapse-img.png" alt="">
         </button>
       </div>
   </div>
@@ -56,10 +57,10 @@
                       </div>
                   </div>
               </a>
-              <!-- <a class="dropdown-item border-bottom-0 pl-4 py-2 d-flex align-items-center" routerLinkActive="active" routerLink="/dashboard/profile/mySettings">
+              <a class="dropdown-item py-3 d-flex align-items-center" routerLinkActive="active" routerLink="/dashboard/profile/mySettings">
                   <i class="icon-profile" style="height: 1.5rem;"></i>
-                  <p class="pl-3 text-2 mb-0">my profile</p>
-              </a> -->
+                  <p class="pl-3 text-2 mb-0">Change Password</p>
+              </a>
               <a class="border-bottom-0 dropdown-item pl-4 pb-3 pt-3 drop-down-bottom-border hand d-flex align-items-center" routerLinkActive="active" routerLink="/login">
                   <i class="icon-check-in text-red" style="height: 1.5rem;"></i>
                   <p class="pl-2 text-2 mb-0" style="color: #f39d9d;">logout</p>

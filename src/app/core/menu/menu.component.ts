@@ -10,25 +10,25 @@ import { Subscription } from 'rxjs';
 export class MenuComponent implements OnInit {
   // config: any;
   // options: any = { multi: false };
-  refreshStatus: Subscription;
+  // refreshStatus: Subscription;
 
   menus: any = [
-    { name: "Home",iconClass: "fa fa-home",active: true,
-      submenu: [
-        { name: "Change Password", url: "#" },
-      ]
-    },
+    // { name: "Home",iconClass: "fa fa-home",active: true,
+    //   submenu: [
+    //     { name: "Change Password", url: "#" },
+    //   ]
+    // },
     { name: "Administration", iconClass: "fa fa-wrench",active: false,
       submenu: [
         { name: "User Administration", url: "#",submenu: [
-          { name: "User Groups",iconClass: "fa fa-users", url: "#" },
+          { name: "User Groups",iconClass: "fa fa-users", url: "/admin/userGroup" },
           { name: "User Roles",iconClass: "fa fa-cogs", url: "#" },
           { name: "Users",iconClass: "fa fa-user", url: "#" },
           { name: "User Matrix Report",iconClass: "fa fa-id-card-o", url: "#" }
          ]
         },
         { name: "Planning", url: "#",submenu: [
-          { name: "Ship", iconClass: "fa fa-clock-o", url: "#" },
+          { name: "Ship", iconClass: "fa fa-clock-o", url: "/planning/shipParticular" },
           { name: "Designation", iconClass: "fa fa-suitcase", url: "#" },
           { name: "Type of Leave", iconClass: "fa fa-server", url: "#" },
          ]
@@ -72,15 +72,15 @@ export class MenuComponent implements OnInit {
     { name: "Gate",iconClass: "fa fa-building-o",active: false,submenu: []},
     { name: "Reports",iconClass: "fa fa-file-text-o",active: false,submenu: []},
     { name: "themes",iconClass: "fa fa-heart",active: false,submenu: []},
-    { name: "Logout",iconClass: "fa fa-user",active: false,submenu: []}
+    // { name: "Logout",iconClass: "fa fa-user",active: false,submenu: []}
   ];
 
   constructor(
     private dashboardService : DashboardService,
   ) {
-    this.refreshStatus = this.dashboardService.refreshCollapse$.subscribe((item:any) => {
-      alert(localStorage.getItem("collapse-nav"));
-    });
+    // this.refreshStatus = this.dashboardService.refreshCollapse$.subscribe((item:any) => {
+    //   alert(localStorage.getItem("collapse-nav"));
+    // });
    }
 
   ngOnInit() {
@@ -104,7 +104,25 @@ export class MenuComponent implements OnInit {
 
 
   ngOnDestroy(){
-    this.refreshStatus.unsubscribe();
+    // this.refreshStatus.unsubscribe();
+  }
+
+  mouseOverFun(){
+    var element = document.getElementById("main");
+    if(element?.classList.contains('small-menu'))
+    {
+      element?.classList.remove("small-menu");
+    }
+  }
+
+  mouseLeave(){
+    var element = document.getElementById("main");
+    if(localStorage.getItem("bigMenu")=='true'){
+      element?.classList.remove("small-menu");
+    }
+    else{
+      element?.classList.add("small-menu");
+    }
   }
 
 

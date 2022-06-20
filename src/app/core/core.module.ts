@@ -10,10 +10,10 @@ import { CoreComponent } from './core.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-// import { CoreRoutingModule } from './core-routing.module';
-
-
+import { AdminComponent } from './admin/admin.component';
+import { UserGroupComponent } from './admin/user-group/user-group.component';
+import { PlanningComponent } from './planning/planning.component';
+import { ShipParticularComponent } from './planning/ship-particular/ship-particular.component';
 
 @NgModule({
   imports: [
@@ -22,15 +22,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-
-    // CoreRoutingModule
   ],
   declarations: [
     LoginComponent,
     MenuComponent,
     CoreComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminComponent,
+    UserGroupComponent,
+    PlanningComponent,
+    ShipParticularComponent
   ]
 })
 export class CoreModule { }

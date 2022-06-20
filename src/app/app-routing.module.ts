@@ -23,6 +23,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './core/login/login.component';
 import { MenuComponent } from './core/menu/menu.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
+import { AdminComponent } from './core/admin/admin.component';
+import { UserGroupComponent } from './core/admin/user-group/user-group.component';
+import { ShipParticularComponent } from './core/planning/ship-particular/ship-particular.component';
+import { PlanningComponent } from './core/planning/planning.component';
+
+
+const adminRoutes: Routes = [
+  {
+    path: 'userGroup',
+    component: UserGroupComponent,
+  }
+];
+const planningRoutes: Routes = [
+  {
+    path: 'shipParticular',
+    component: ShipParticularComponent,
+  }
+];
 
 const routes: Routes = [
   {
@@ -40,7 +58,25 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    children: [
+      // {
+      //   path: '',
+      //   // redirectTo: 'dashboard',
+      //   pathMatch: 'full',
+      //   component: DashboardComponent,
+      // },
+      {
+        path:'admin',
+        component: AdminComponent,
+        children: adminRoutes,
+      },
+      {
+        path:'planning',
+        component: PlanningComponent,
+        children: planningRoutes,
+      },
+    ]
   }
 ];
 

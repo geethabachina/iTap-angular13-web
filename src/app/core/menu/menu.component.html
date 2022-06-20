@@ -1,6 +1,7 @@
 <div class="mainContainer">
 <div class="collapse show d-md-flex bg-light left-menu short-menu" id="sidebar">
-  <ul class="nav flex-column flex-nowrap">
+  <!-- <div class="collapse show d-md-flex bg-light short-menu" id="sidebar"> -->
+  <ul class="nav flex-column flex-nowrap" id="menu" (mouseenter)="mouseOverFun()" (mouseleave)="mouseLeave()">
     <li *ngFor="let menu of menus; let i = index" class="nav-item">
       <a
         class="nav-link collapsed text-truncate"
@@ -31,7 +32,8 @@
               <ul *ngIf="submenu.submenu" class="flex-column nav">
                 <li *ngFor="let submenu2 of submenu.submenu" class="nav-item">
                   <a class="nav-link p-1 text-truncate">
-                    <i [class]="submenu2.iconClass"></i> {{ submenu2.name }}
+                    <i [class]="submenu2.iconClass"></i>{{ submenu2.name }}
+                    <!-- <i [class]="submenu2.iconClass"></i> <a routerLinkActive="active" routerLink="/dashboard/admin/userGroup" >{{ submenu2.name }}</a> -->
                   </a>
                 </li>
               </ul>
@@ -97,7 +99,7 @@
             </ul> -->
 </div>
 <div class="content-container">
-  <h2>
+  <!-- <h2>
     <a href="" data-target="#sidebar" data-toggle="collapse" class="d-md-none"
       ><i class="fa fa-bars"></i
     ></a>
@@ -113,6 +115,7 @@
     pickled gentrify mustache. 3 wolf moon hashtag church-key Odd Future. Austin
     messenger bag normcore, Helvetica Williamsburg sartorial tote bag distillery
     Portland before they sold out gastropub taxidermy Vice.
-  </p>
+  </p> -->
+  <app-admin></app-admin>
 </div>
 </div>

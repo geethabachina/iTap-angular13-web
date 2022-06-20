@@ -8,28 +8,32 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 })
 export class HeaderComponent implements OnInit {
   photoUrl: string = '../../../../assets/css/images/user-default-white.png';
-
+  bigMenu: boolean = true;
   constructor(
     private dashboardService : DashboardService,
   ) { }
 
   ngOnInit(): void {
+    localStorage.setItem("bigMenu", 'true');
   }
 
 
-   toggleSideBar(){
-    this.dashboardService.setNavCollapseStatus(true);
-    // document.querySelector('body').classList.toggle('collapsed-added');
-    // document.querySelector('body').classList.toggle('collapsed-removed');
+  toggleSideBar(){
+    //this.dashboardService.setNavCollapseStatus(true);
+    var element = document.getElementById("main");
+    if(element?.classList.contains('small-menu'))
+    {
+      element?.classList.remove("small-menu");
+      localStorage.setItem("bigMenu", 'true');
+      this.bigMenu = true;
+    }
+    else {
+      element?.classList.add("small-menu");
+      localStorage.setItem("bigMenu", 'false');
+      this.bigMenu = false;
+    }
+  }
 
-    // if(document.querySelector('.main').classList.contains('collapsed'))
-    // {
-
-    // }
-    // else {
-
-    // }
-   }
 
 
 
