@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
 
 
   toggleSideBar(){
-    //this.dashboardService.setNavCollapseStatus(true);
     var element = document.getElementById("main");
     if(element?.classList.contains('small-menu'))
     {
@@ -32,6 +31,7 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem("bigMenu", 'false');
       this.bigMenu = false;
     }
+    this.dashboardService.setNavCollapseStatus(this.bigMenu);
   }
 
 

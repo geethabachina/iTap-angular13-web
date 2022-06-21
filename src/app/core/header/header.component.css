@@ -61,7 +61,8 @@ a{
   display: flex;
   padding-top: 8px;
   padding-bottom: 1px;
-  background-color: #2A3A43;
+  /* background-color: #2A3A43; */
+  background-color: #3398e5;
   flex-grow: 1;
 }
 

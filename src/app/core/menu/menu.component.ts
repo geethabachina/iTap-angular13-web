@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
 export class MenuComponent implements OnInit {
   // config: any;
   // options: any = { multi: false };
-  // refreshStatus: Subscription;
+   refreshStatus: Subscription;
+   bigMenu: any = true;
 
   menus: any = [
     // { name: "Home",iconClass: "fa fa-home",active: true,
@@ -78,13 +79,35 @@ export class MenuComponent implements OnInit {
   constructor(
     private dashboardService : DashboardService,
   ) {
-    // this.refreshStatus = this.dashboardService.refreshCollapse$.subscribe((item:any) => {
-    //   alert(localStorage.getItem("collapse-nav"));
-    // });
+    this.refreshStatus = this.dashboardService.refreshCollapse$.subscribe((item:any) => {
+      this.bigMenu = item;
+    });
    }
 
   ngOnInit() {
     //this.config = this.mergeConfig(this.options);
+  }
+
+  expendMenu(index:any){
+    debugger
+    //setTimeout(() => {
+      for(var i=0;i<=this.menus.length-1;i++){
+        var element = document.getElementById('menu'+ i);
+        if(i==index){
+          //element?.setAttribute('aria-expanded', 'true');
+          //element?.setAttribute('data-toggle', 'show');
+          //element?.classList.remove("collapsed");
+        }
+        else{
+          element?.classList.remove("show");
+          //element?.setAttribute('aria-expanded', 'false');
+          //element?.setAttribute('data-toggle', 'false');
+          //element1?.setAttribute('aria-expanded', 'false');
+          //element?.classList.add("collapsed");
+          //event.target.collpase('toggle');
+        }
+      }
+    //}, 200);
   }
 
   // mergeConfig(options: any) {
@@ -104,7 +127,7 @@ export class MenuComponent implements OnInit {
 
 
   ngOnDestroy(){
-    // this.refreshStatus.unsubscribe();
+     this.refreshStatus.unsubscribe();
   }
 
   mouseOverFun(){
@@ -112,6 +135,7 @@ export class MenuComponent implements OnInit {
     if(element?.classList.contains('small-menu'))
     {
       element?.classList.remove("small-menu");
+      this.bigMenu = true;
     }
   }
 
@@ -119,9 +143,11 @@ export class MenuComponent implements OnInit {
     var element = document.getElementById("main");
     if(localStorage.getItem("bigMenu")=='true'){
       element?.classList.remove("small-menu");
+      this.bigMenu = true;
     }
     else{
       element?.classList.add("small-menu");
+      this.bigMenu = false;
     }
   }
 
