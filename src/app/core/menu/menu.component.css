@@ -76,79 +76,22 @@ height: 100vh;overflow-y: auto;padding: 8px;
 .nav-link[data-toggle]:not(.collapsed):after {
     content: " ▴";
 }
+/* .parent > div > ul > li > a { */
+  .parent > div > ul{
+    background:#595787;
+    border-radius: 4px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-.accordion {
-  width: 100%;
-  max-width: 360px;
-  margin: auto;
-  background: #fff;
+.child > div > ul > li > a {
+/* .child > div > ul{ */
+  /* background:white;
+  color: black; */
+  background:#7d878f;
+  color: white;
   border-radius: 4px;
 }
 
-.accordion .menu {
-  position: relative;
-  padding: 15px 15px 15px 45px;
-  color: #4d4d4d;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-
-.accordion li:last-child .menu {
-  border-bottom: 0;
-}
-
-.accordion li i {
-  position: absolute;
-  top: 1.2rem;
-  left: 1rem;
-  color: #595959;
-  transition: all 0.4s ease;
-}
-
-.accordion li i.fa-chevron-down {
-  /* right: 1rem; */
-  /* left: auto; */
-}
-
-.accordion li.active i.fa {
-  transform: rotate(180deg);
-}
-
-.accordion li.active .menu {
-  color: #b63b4d;
-}
-
-.accordion li.active i {
-  color: #b63b4d;
-}
-
-/* Show submenu */
-.accordion li.active .submenu {
-  /*
-    height: 0 -> height: auto;는 transition이 동작하지 않는다.
-    max-height: 임의의 높이;를 지정하면 transition이 동작하지만 타이밍이 망가진다.
-    max-height: 1000px;과 max-height: 133px;을 비교해 보라!
-    height를 1000px으로 transition할 시간에 실제로는 133px정도만 transition하므로 여는 시간이 닫는 시간보다 빠르다.
-  */
-  /* max-height: 1000px; */
-  /* max-height: 133px; */
-}
-
-.submenu {
+/* .submenu {
   height: 0;
   overflow: hidden;
   background: #444359;
@@ -158,14 +101,6 @@ height: 100vh;overflow-y: auto;padding: 8px;
 
 .submenu li {
   border-bottom: 1px solid #4b4a5e;
-}
-
-.accordion li:last-child .submenu {
-  border-radius: 0 0 4px 4px;
-}
-
-.accordion li:last-child .submenu li:last-child {
-  border-bottom: 0;
 }
 
 .submenu a {
@@ -180,5 +115,5 @@ height: 100vh;overflow-y: auto;padding: 8px;
 .submenu a:hover {
   background: #b63b4d;
   color: #fff;
-}
+} */
 

@@ -10,9 +10,8 @@ import { Subscription } from 'rxjs';
 export class MenuComponent implements OnInit {
   // config: any;
   // options: any = { multi: false };
-   refreshStatus: Subscription;
-   bigMenu: any = true;
-
+  refreshStatus: Subscription;
+  bigMenu: any = true;
   menus: any = [
     // { name: "Home",iconClass: "fa fa-home",active: true,
     //   submenu: [
@@ -80,7 +79,8 @@ export class MenuComponent implements OnInit {
     private dashboardService : DashboardService,
   ) {
     this.refreshStatus = this.dashboardService.refreshCollapse$.subscribe((item:any) => {
-      this.bigMenu = item;
+      //this.bigMenu = item;
+      this.collapseAll();
     });
    }
 
@@ -88,26 +88,58 @@ export class MenuComponent implements OnInit {
     //this.config = this.mergeConfig(this.options);
   }
 
-  expendMenu(index:any){
+  collapseAll(){
+    for(var i=0;i<=this.menus.length-1;i++){
+      var element = document.getElementById('menu'+ i);
+      var ele = document.getElementById('menuIcon'+ i);
+      element?.classList.remove("show");
+      ele?.classList.add("collapsed");//for collapse icon change
+      for(var j=0;j<=this.menus[i].submenu.length-1;j++){
+        var element1 = document.getElementById('submenu' + i + j);
+        var ele1 = document.getElementById('submenuIcon' + i + j);
+        element1?.classList.remove("show");
+        ele1?.classList.add("collapsed");//for collapse icon change
+      }
+    }
+  }
+
+  collapseMenu(index:any){
     debugger
     //setTimeout(() => {
       for(var i=0;i<=this.menus.length-1;i++){
         var element = document.getElementById('menu'+ i);
+        var ele = document.getElementById('menuIcon'+ i);
         if(i==index){
-          //element?.setAttribute('aria-expanded', 'true');
-          //element?.setAttribute('data-toggle', 'show');
-          //element?.classList.remove("collapsed");
         }
         else{
           element?.classList.remove("show");
-          //element?.setAttribute('aria-expanded', 'false');
-          //element?.setAttribute('data-toggle', 'false');
-          //element1?.setAttribute('aria-expanded', 'false');
-          //element?.classList.add("collapsed");
-          //event.target.collpase('toggle');
+          ele?.classList.add("collapsed");
+          for(var j=0;j<=this.menus[i].submenu.length-1;j++){
+            var element1 = document.getElementById('submenu' + i + j);
+            var ele1 = document.getElementById('submenuIcon' + i + j);
+            element1?.classList.remove("show");
+            ele1?.classList.add("collapsed");//for collapse icon change
+          }
         }
       }
     //}, 200);
+  }
+
+  collapseSubMenu(index:any,sibIndex:any){
+    for(var i=0;i<=this.menus.length-1;i++){
+      for(var j=0;j<=this.menus[i].submenu.length-1;j++){
+        if(i==index){
+          var element = document.getElementById('submenu' + i + j);
+          var ele = document.getElementById('submenuIcon' + i + j);
+          if(j==sibIndex){
+          }
+          else{
+            element?.classList.remove("show");
+            ele?.classList.add("collapsed");
+          }
+        }
+      }
+    }
   }
 
   // mergeConfig(options: any) {
@@ -135,7 +167,7 @@ export class MenuComponent implements OnInit {
     if(element?.classList.contains('small-menu'))
     {
       element?.classList.remove("small-menu");
-      this.bigMenu = true;
+      //this.bigMenu = true;
     }
   }
 
@@ -143,11 +175,12 @@ export class MenuComponent implements OnInit {
     var element = document.getElementById("main");
     if(localStorage.getItem("bigMenu")=='true'){
       element?.classList.remove("small-menu");
-      this.bigMenu = true;
+      //this.bigMenu = true;
     }
     else{
       element?.classList.add("small-menu");
-      this.bigMenu = false;
+      //this.bigMenu = false;
+      this.collapseAll();
     }
   }
 

@@ -3,7 +3,8 @@
 /* CSS Start */
 .notify{left: 24px;top: 4px;}
 .dropdown-menu{box-shadow: 0px 5px 10px rgba(0,0,0,0.15) !important;border: none;}
-.main-header{position: absolute;left: 250px;right: 0;}
+/* .main-header{position: absolute;left: 250px;right: 0;} */
+.main-header{position: absolute;left: 0;right: 0;}
 /* CSS END*/
 a{
   color: #a4aaad;

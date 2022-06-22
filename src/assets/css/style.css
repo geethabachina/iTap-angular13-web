@@ -2,7 +2,8 @@
 body{font-family: 'Open Sans', sans-serif !important;scrollbar-width: thin;}
 .mainContainer{display: flex;}
 .content-container{padding: 16px;margin-top: 55px;}
-.small-menu .main-header{left: 72px !important;}
+/* .small-menu .main-header{left: 72px !important;} */
+.small-menu .main-header{left: 0 !important;}
 .small-menu .left-menu{flex: 0 0 72px !important;}
 .small-menu .left-menu ul li a span{display: none;}
 .small-menu .left-menu ul li a{text-align: center;}
