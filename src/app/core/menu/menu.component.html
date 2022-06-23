@@ -8,8 +8,8 @@
       <img  style="width: 70px;"  src="assets/css/images/iTAP-logo2.png" class="image logo">
     </div> -->
 
-    <!-- <li *ngFor="let menu of menus; let i = index" class="parent nav-item"> -->
-    <li *ngFor="let menu of menus; let i = index" clakss="nav-item">
+    <li *ngFor="let menu of menus; let i = index" class="parent nav-item">
+    <!-- <li *ngFor="let menu of menus; let i = index" clakss="nav-item"> -->
       <a class="nav-link collapsed text-truncate" [id]="'menuIcon' + i" data-toggle="collapse" (click)="collapseMenu(i)" [attr.data-target]="'#menu' + i">
         <i [class]="menu.iconClass"></i><span class="pl-2">{{ menu.name }}</span>
       </a>
@@ -19,7 +19,7 @@
             <a class="text-truncate collapsed py-1" [ngClass]="submenu.submenu ? 'nav-link' : 'pl-3'" [id]="'submenuIcon' + i + j" data-toggle="collapse" (click)="collapseSubMenu(i,j)" [attr.data-target]="'#submenu' + i + j">
               <span>{{ submenu.name }}</span>
             </a>
-            <div *ngIf="submenu.submenu" class="collapse third-level pt-2" [attr.id]="'submenu' + i + j" aria-expanded="false">
+            <div *ngIf="submenu.submenu" class="collapse third-level pt-2 pr-2" [attr.id]="'submenu' + i + j" aria-expanded="false">
               <ul *ngIf="submenu.submenu" class="flex-column nav">
                 <li *ngFor="let submenu2 of submenu.submenu" class="nav-item">
                   <a class="nav-link p-1 text-truncate" routerLinkActive="active" routerLink="/{{submenu2.url}}">
