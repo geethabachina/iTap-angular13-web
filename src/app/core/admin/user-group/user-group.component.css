@@ -1,0 +1,35 @@
+body{
+	padding-top:50px;
+	background-color:#34495e;
+}
+
+.hiddenRow {
+    padding: 0 !important;
+}
+
+.label-title {
+  font-size: 12px;
+  color: #3d5567;
+  /* font-family: 'montserratregular'; */
+  margin-bottom: 2px;
+  /* text-transform: uppercase; */
+}
+.field-value {
+  font-size: 12px;
+  color: #000;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+}
+.text-left {
+  text-align: left!important;
+}
+.common-table table tr th {
+  background: #97a6b1;
+  color: #1b2332;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-bottom: 0px solid #dee2e6;
+  vertical-align: middle;
+  position: relative;
+}
