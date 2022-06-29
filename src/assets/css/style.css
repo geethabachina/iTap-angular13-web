@@ -60,3 +60,8 @@ body{font-family: 'Open Sans', sans-serif !important;scrollbar-width: thin;}
   padding: 7px;
   border-radius: 6px 6px 0 0;
 }
+.blue-under {
+  color: #2294e3;
+  text-decoration: underline;
+  cursor: pointer;
+}
