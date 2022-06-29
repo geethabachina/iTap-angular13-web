@@ -1,63 +1,88 @@
-
 <!-- https://codepen.io/n3k1t/pen/OJMGgyq -->
 
-
-<div class="row mt-3">
-  <div class="col-md-8 d-flex ">
-    <div class="">
-      <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>     Add</button>
-    </div>
-    <div class="col-md-2 pl-2">
-      <select class="form-control ">
-        <option selected>select status</option>
+<div class="action-bar mb-3">
+  <div class="row align-items-start">
+    <div class="col-md-10 form-inline">
+      <button type="button" class="btn btn-blue btn-sm">
+        <i class="fa fa-plus mr-2" aria-hidden="true"></i>Add
+      </button>
+      <button (click)="filterClick=!filterClick" type="button" class="btn btn-secondary btn-sm ml-2">
+        <i class="fa fa-filter" aria-hidden="true"></i>
+      </button>
+      <!-- <button class="hover_tooltip-btm filter-btn filter-sort-btn height-32" title="" type="button" ng-reflect-klass="hover_tooltip-btm filter-btn f" ng-reflect-ng-class="">
+        <span class="tooltiptext-btm">Filter</span>
+      </button> -->
+      <select *ngIf="filterClick" [(ngModel)]="status" class="form-control ml-2 form-control-sm">
+        <option value="" selected>Select Status</option>
         <option value="1">Open</option>
         <option value="2">Planned</option>
       </select>
+      <input *ngIf="filterClick" type="text" [bsConfig]="dateConfig" autocomplete="off" style="border-radius: 8px;border-color:#e8e8e8; border: 0" class="form-control-sm ml-2 mr-2" [(ngModel)]="dateRange"  #dp="bsDaterangepicker" bsDaterangepicker placement="bottom">
+      <button *ngIf="filterClick" type="button" class="btn btn-secondary btn-sm" (click)="reset()">Reset</button>
     </div>
-  </div>
-
-  <div class="input-group mb-3 col-md-2 pull-right">
-    <input type="text" class="form-control" placeholder="Search" >
-    <!-- <div class="input-group-append">
+    <div class="col-md-2 mb-0">
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        placeholder="Search..."
+      />
+      <!-- <div class="input-group-append">
       <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
     </div> -->
+    </div>
   </div>
-
 </div>
 
-
-<div class="mt-2">
-	<div class="col-md-11" style="padding-right: 8rem!important;">
-    	<div class="panel panel-default">
-				<!-- <div class="panel-heading">
+<div class="panel panel-default">
+  <!-- <div class="panel-heading">
 					Employee
 				</div> -->
-        <div class="common-table panel-body">
-					<table class="table table-condensed table-striped">
-    <thead>
-        <tr>
-          <th>Fist Name</th>
-          <th>Last Name</th>
-          <th>Status</th>
-          <th>More</th>
-          <th>Actions</th>
-        </tr>
-    </thead>
+  <div class="common-table panel-body">
+    <div class="row justify-content-center">
+      <div class="col-xl-3 col-md-3 result-showing">
+        <span>Showing <span>25</span> of 350 </span>
+      </div>
+    </div>
+    <div style="padding: 12px;">
+      <div class="table-responsive" style="max-height: 550px !important;overflow-y: auto;">
+        <table class="table table-hover table-striped">
+          <thead class="table-header">
+            <tr>
+              <th class="hand" (click)="sorting('firstName')">Fist Name   <i *ngIf="firstNameSortType=='asc'&&sortColumnClick=='firstName'" class="fa fa-long-arrow-up" aria-hidden="true"></i><i *ngIf="firstNameSortType=='desc'&&sortColumnClick=='firstName'" class="fa fa-long-arrow-down" aria-hidden="true"></i></th>
+              <th class="hand" (click)="sorting('lastName')">Last Name  <i *ngIf="lastNameSortType=='asc'&&sortColumnClick=='lastName'" class="fa fa-long-arrow-up" aria-hidden="true"></i><i *ngIf="lastNameSortType=='desc'&&sortColumnClick=='lastName'" class="fa fa-long-arrow-down" aria-hidden="true"></i></th>
+              <th class="hand" (click)="sorting('status')">Status  <i *ngIf="statusSortType=='asc'&&sortColumnClick=='status'" class="fa fa-long-arrow-up" aria-hidden="true"></i><i *ngIf="statusSortType=='desc'&&sortColumnClick=='status'" class="fa fa-long-arrow-down" aria-hidden="true"></i></th>
+              <th>More</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-    <tbody>
-        <tr>
-            <td style="color: blue;"><u>mispeled</u></td>
-            <td>Mathias</td>
-            <td>Open</td>
-            <td data-toggle="collapse" data-target="#demo1" class="accordion-toggle"><i class="fa fa-ellipsis-h"></i></td>
-            <td>
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-              <i class="fa fa-trash-o" aria-hidden="true" style="padding-left:15px;"></i>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="12" class="hiddenRow">
-							<div class="accordian-body collapse ml-3 mr-3 pt-2 pb-2" id="demo1">
+          <tbody >
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo11"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo11"
+                >
                   <div class="bg-white extra-table-content">
                     <div class="row">
                       <div class="col-xl-3 col-sm-3">
@@ -74,7 +99,9 @@
                       </div>
                       <div class="col-xl-3 col-sm-3">
                         <div>
-                          <div class="label-title text-left">Shipping Agent</div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
                           <div class="field-value text-left">Agent</div>
                         </div>
                       </div>
@@ -96,22 +123,19 @@
                       <div class="col-xl-3 col-sm-3">
                         <div>
                           <div class="label-title text-left">Last Port</div>
-                          <div class="field-value text-left">grt
-                          </div>
+                          <div class="field-value text-left">grt</div>
                         </div>
                       </div>
                       <div class="col-xl-3 col-sm-3">
                         <div>
                           <div class="label-title text-left">Next Port</div>
-                          <div class="field-value text-left">grt
-                          </div>
+                          <div class="field-value text-left">grt</div>
                         </div>
                       </div>
                       <div class="col-xl-3 col-sm-3">
                         <div>
                           <div class="label-title text-left">Final Port</div>
-                          <div class="field-value text-left">grt
-                          </div>
+                          <div class="field-value text-left">grt</div>
                         </div>
                       </div>
 
@@ -147,141 +171,2779 @@
                       <div class="clearfix"></div>
                     </div>
                   </div>
-              </div>
-          </td>
-        </tr>
-
-
-
-        <tr>
-             <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
-            <td style="color: blue;"><u>Silvio</u></td>
-            <td>Santos</td>
-            <td>Planned</td>
-            <td data-toggle="collapse" data-target="#demo2" class="accordion-toggle"><i class="fa fa-ellipsis-h"></i></td>
-            <td>
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-              <i class="fa fa-trash-o" aria-hidden="true" style="padding-left:15px;"></i>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="6" class="hiddenRow">
-              <div class="accordian-body collapse ml-3 mr-3 pt-2 pb-2" id="demo2">
-                <div class="bg-white extra-table-content">
-                  <div class="row">
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Vessel Size</div>
-                        <div class="field-value text-left">HANDYMAX</div>
-                      </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Vessel Type</div>
-                        <div class="field-value text-left">type</div>
-                      </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Shipping Agent</div>
-                        <div class="field-value text-left">Agent</div>
-                      </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Loa</div>
-                        <div class="field-value text-left">loa</div>
-                      </div>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="row mt-4">
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Grt</div>
-                        <div class="field-value text-left">grt</div>
-                      </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Last Port</div>
-                        <div class="field-value text-left">grt
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Next Port</div>
-                        <div class="field-value text-left">grt
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Final Port</div>
-                        <div class="field-value text-left">grt
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
                         </div>
                       </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
                     </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
 
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="row mt-4">
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Created By</div>
-                        <div class="field-value text-left">grt</div>
-                      </div>
+                      <div class="clearfix"></div>
                     </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Created Date</div>
-                        <div class="field-value text-left">grt</div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
                       </div>
-                    </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
 
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Modified By</div>
-                        <div class="field-value text-left">grt</div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-3">
-                      <div>
-                        <div class="label-title text-left">Modified Date</div>
-                        <div class="field-value text-left">grt</div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="clearfix"></div>
+                      <div class="clearfix"></div>
+                    </div>
                   </div>
                 </div>
-            </div>
-          </td>
-        </tr>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="color: #3398e6;" class="hand">mispeled</td>
+              <td>Mathias</td>
+              <td>Open</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo1"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="12" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo1"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">Asdsadss</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
 
 
-        <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
-            <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
-            <td style="color: blue;"><u>John</u></td>
-            <td>Doe</td>
-            <td>Planned</td>
-            <td><i class="fa fa-ellipsis-h"></i></td>
-            <td>
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-              <i class="fa fa-trash-o" aria-hidden="true" style="padding-left:15px;"></i>
-            </td>
-            <!-- <td> New</td> -->
-        </tr>
-        <tr>
-            <td colspan="6" class="hiddenRow"><div id="demo3" class="accordian-body collapse">Demo3 sadasdasdasdasdas</div></td>
-        </tr>
-    </tbody>
-</table>
-            </div>
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
 
-          </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
 
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">Silvio</td>
+              <td>Santos</td>
+              <td>Planned</td>
+              <td
+                data-toggle="collapse"
+                data-target="#demo2"
+                class="accordion-toggle"
+              >
+                <i class="fa fa-ellipsis-h"></i>
+              </td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="hiddenRow">
+                <div
+                  class="accordian-body collapse ml-3 mr-3 pt-2 pb-2"
+                  id="demo2"
+                >
+                  <div class="bg-white extra-table-content">
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Size</div>
+                          <div class="field-value text-left">HANDYMAX</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Vessel Type</div>
+                          <div class="field-value text-left">type</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">
+                            Shipping Agent
+                          </div>
+                          <div class="field-value text-left">Agent</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Loa</div>
+                          <div class="field-value text-left">loa</div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Grt</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Last Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Next Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Final Port</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Created Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified By</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-3">
+                        <div>
+                          <div class="label-title text-left">Modified Date</div>
+                          <div class="field-value text-left">grt</div>
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+
+            <tr
+              data-toggle="collapse"
+              data-target="#demo3"
+              class="accordion-toggle"
+            >
+              <!-- <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td> -->
+              <td style="color: #3398e6;">John</td>
+              <td>Doe</td>
+              <td>Planned</td>
+              <td><i class="fa fa-ellipsis-h"></i></td>
+              <td>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i
+                  class="fa fa-trash-o"
+                  aria-hidden="true"
+                  style="padding-left: 15px"
+                ></i>
+              </td>
+              <!-- <td> New</td> -->
+            </tr>
+          </tbody>
+        </table>
       </div>
-	</div>
-
+      <div class="row pt-3 align-items-start">
+        <div class="col-md-3 align-items-center d-flex">
+          <span class="title-show">Show</span>
+          <select class="form-control form-control-sm drop-show ml-1">
+            <option value="10">10</option>
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <div class="col-md-6 text-center">
+          <button type="button" class="btn-show-more">show more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

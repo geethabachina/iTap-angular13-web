@@ -15,21 +15,59 @@ body{
   /* text-transform: uppercase; */
 }
 .field-value {
-  font-size: 12px;
+  font-size: 14px;
   color: #000;
   font-weight: bold;
-  /* text-transform: uppercase; */
-}
-.text-left {
-  text-align: left!important;
 }
 .common-table table tr th {
-  background: #97a6b1;
-  color: #1b2332;
-  font-size: 12px;
-  text-transform: uppercase;
-  padding: 10px 20px;
+  background: #444359;
+  color: #FFFFFF;
+  font-weight: 500;
   border-bottom: 0px solid #dee2e6;
   vertical-align: middle;
-  position: relative;
+  border-top: none;
+}
+.common-table table tr td, .common-table table tr th{
+  font-size: 14px;
+  padding: 8px 15px;
+  border-collapse: collapse;
+}
+.common-table{position: relative;}
+.common-table table tr th:last-child{border-top-right-radius: 8px;}
+.common-table table tr th:first-child{border-top-left-radius: 8px;}
+.common-table table tbody tr:last-child td:first-child{border-bottom-left-radius: 8px;}
+.common-table table tbody tr:last-child td:last-child{border-bottom-right-radius: 8px;}
+.common-table table tbody{max-height: 400px;overflow-y: auto;}
+.common-table .table-header{
+  position: sticky; top: 0;
+}
+.result-showing {
+  text-align: center;
+  padding: 2px;
+  font-size: 11px;
+  border: 1px solid #b7b5b5;
+  border-radius: 5px;
+}
+.btn-show-more,
+.btn-show-less {
+  font-size: 12px;
+  color: #3398e6;
+  text-transform: uppercase;
+  margin: auto;
+  border: 0;
+  background: transparent;
+  font-weight: 500;
+}
+.title-show{
+  font-size: 12px;
+}
+.btn-blue{
+  color: #fff;
+  background-color: #3398e5;
+  border-color: #3398e5;
+}
+.drop-show{
+  width: 58px;
+  padding: 0;
+  height: 24px;
 }
