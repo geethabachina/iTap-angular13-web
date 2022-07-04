@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { UserGroupComponent } from './user-group/user-group.component';
+import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
 
 @NgModule({
   declarations: [
-    UserGroupComponent
+    UserGroupComponent,
+    AddUserGroupComponent
   ],
   imports: [
     CommonModule,

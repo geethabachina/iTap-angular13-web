@@ -28,12 +28,17 @@ import { UserGroupComponent } from './core/admin/user-group/user-group.component
 import { ShipParticularComponent } from './core/planning/ship-particular/ship-particular.component';
 import { PlanningComponent } from './core/planning/planning.component';
 import { CoreComponent } from './core/core.component';
+import { AddUserGroupComponent } from './core/admin/user-group/add-user-group/add-user-group.component';
 
 
 const adminRoutes: Routes = [
   {
     path: 'userGroup',
     component: UserGroupComponent,
+  },
+  {
+    path: 'addUserGroup',
+    component: AddUserGroupComponent,
   }
 ];
 const planningRoutes: Routes = [

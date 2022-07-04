@@ -1,10 +1,13 @@
-/* ////////////////////////////////// */
-
 /* CSS Start */
 .notify{left: 24px;top: 4px;}
 .dropdown-menu{box-shadow: 0px 5px 10px rgba(0,0,0,0.15) !important;border: none;}
-/* .main-header{position: absolute;left: 250px;right: 0;} */
 .main-header{position: absolute;left: 0;right: 0;}
+.top-nav{display: flex; background-color: #161f38; flex-grow: 1; height: 45px;box-shadow: 0px 5px 10px rgba(0,0,0,0.10);}
+.map-card-image {
+  width: 30px;
+  height: 30px;
+}
+.logo{width: 120px;margin-left: 10px;}
 /* CSS END*/
 a{
   color: #a4aaad;
@@ -33,10 +36,7 @@ a{
   margin-left: 80%;
 }
 
-.map-card-image {
-  width: 30px;
-  height: 30px;
-}
+
 
 .icon-size {
   width: 30px;
@@ -57,15 +57,7 @@ a{
   color: rgb(231, 190, 101);
 }
 
-.top-nav
-{
-  display: flex;
-  padding-top: 8px;
-  padding-bottom: 1px;
-  /* background-color: #2A3A43; */
-  background-color: #3398e5;
-  flex-grow: 1;
-}
+
 
 .mid-nav
 {
@@ -77,9 +69,7 @@ a{
 {
   margin-left: 100px;
 }
-
-.noTop
-{
+.noTop{
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -100,9 +90,6 @@ a{
   color: rgb(32, 32, 32);
   text-decoration: none;
 }
-
-/* Middle ICONS */
-
 .homeBlack
 {
   width: 45px;
@@ -267,16 +254,6 @@ a{
   color: rgba(255, 255, 255, 0.767);
   letter-spacing: 0.3px;
 }
-
-.main-header{
-  transition: margin 1000ms;
-  z-index: 100;
-}
-
-.main-header.open-left{
-  margin: 0px 240px 0px 0px;
-}
-
 .plus-icon{
   width: 15px;
 }
