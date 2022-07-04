@@ -1,11 +1,9 @@
 <nav id="header" class="navbar-expand-md top-nav pt-0 main-header">
   <div class="navbar-collapse d-flex">
-      <div class="nav-item d-flex align-items-center pl-4">
-        <button class="unbutton px-0" type="button" style="margin-left: -25px;">
+      <div class="nav-item d-flex align-items-center">
           <img src="assets/css/images/iTAP-logo2.png" class="image logo">
-          <img *ngIf="bigMenu" class="ml-3 hand" style="height: 20px;" (click)="toggleSideBar()" src="../../../../assets/css/images/box.png" alt="">
-          <img *ngIf="!bigMenu" class="ml-3 hand" style="height: 15px;" (click)="toggleSideBar()" src="../../../../assets/css/images/collapse-img.png" alt="">
-        </button>
+          <img *ngIf="bigMenu" class="hand hambuger" (click)="toggleSideBar()" src="../../../../assets/css/images/box.png" alt="">
+          <img *ngIf="!bigMenu" class="hand hambuger" (click)="toggleSideBar()" src="../../../../assets/css/images/collapse-img.png" alt="">
       </div>
   </div>
 

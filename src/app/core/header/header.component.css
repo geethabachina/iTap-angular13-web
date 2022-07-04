@@ -3,11 +3,12 @@
 .dropdown-menu{box-shadow: 0px 5px 10px rgba(0,0,0,0.15) !important;border: none;}
 .main-header{position: absolute;left: 0;right: 0;}
 .top-nav{display: flex; background-color: #161f38; flex-grow: 1; height: 45px;box-shadow: 0px 5px 10px rgba(0,0,0,0.10);}
+.hambuger{width: 16px;}
 .map-card-image {
   width: 30px;
   height: 30px;
 }
-.logo{width: 120px;margin-left: 10px;}
+.logo{width: 120px;margin-left: 4px;}
 /* CSS END*/
 a{
   color: #a4aaad;
