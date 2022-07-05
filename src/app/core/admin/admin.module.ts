@@ -8,11 +8,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { UserGroupComponent } from './user-group/user-group.component';
 import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
+import { DeleteUserGroupComponent } from './user-group/delete-user-group/delete-user-group.component';
 
 @NgModule({
   declarations: [
     UserGroupComponent,
-    AddUserGroupComponent
+    AddUserGroupComponent,
+    DeleteUserGroupComponent
   ],
   imports: [
     CommonModule,
