@@ -158,10 +158,6 @@ export class MenuComponent implements OnInit {
   // }
 
 
-  ngOnDestroy(){
-     this.refreshStatus.unsubscribe();
-  }
-
   mouseOverFun(){
     var element = document.getElementById("main");
     if(element?.classList.contains('small-menu'))
@@ -185,8 +181,9 @@ export class MenuComponent implements OnInit {
   }
 
 
-
-
+  ngOnDestroy(){
+    this.refreshStatus.unsubscribe();
+  }
 
 
 
