@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-group',
@@ -20,9 +22,15 @@ export class UserGroupComponent implements OnInit {
 
   constructor(
     private dashboardService : DashboardService,
+    private toastr: ToastrService,
+    private spinner : NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   sorting(columnName:any){
@@ -70,6 +78,12 @@ export class UserGroupComponent implements OnInit {
   editClick(){
     this.mode = 'edit';
     this.minimise();
+  }
+
+  deleteSave(){
+    this.toastr.success('', 'Deleted successfully');
+    // this.toastr.warning('', 'Can not delete');
+    // this.toastr.error('', 'error');
   }
 
 }

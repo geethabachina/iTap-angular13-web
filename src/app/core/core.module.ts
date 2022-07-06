@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { SharedModule } from '../shared/shared.module';
 
 import { PlanningModule } from './planning/planning.module';
 import { AdminModule } from './admin/admin.module';
-
-
 
 import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core.component';
@@ -27,7 +25,8 @@ import { PlanningComponent } from './planning/planning.component';
     FormsModule,
     ReactiveFormsModule,
     PlanningModule,
-    AdminModule
+    AdminModule,
+    SharedModule
   ],
   declarations: [
     LoginComponent,

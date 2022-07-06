@@ -1,6 +1,21 @@
 <!-- https://codepen.io/n3k1t/pen/OJMGgyq -->
 <div id="userGroup" class="">
   <!-- Need to add "show-overview" dynamically to the above div to mininize and miximinze -->
+  <!-- <ngx-spinner
+  bdColor = "rgba(51, 51, 51, 0.8)"
+  size = "default"
+  color = "#fff"
+  type = "ball-atom"
+></ngx-spinner> -->
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+></ngx-spinner>
+
+<!-- <ngx-spinner type="ball-scale-multiple"></ngx-spinner> -->
 
   <!-- left side  -->
   <div class="container-wrapper">
@@ -2602,7 +2617,7 @@
         Are you sure you want to delete 'Mispeled' User Group ?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary"  data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deleteSave()">Yes</button>
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">No</button> -->
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">No</button>
       </div>

@@ -17,7 +17,7 @@ body{font-family: 'Roboto', sans-serif;scrollbar-width: thin;}
 ::-webkit-scrollbar-thumb:hover {background: #555;}
 .alert {color: #dc3545;padding-top: 5px!important;margin-bottom: -14px;font-size: 10px;margin-right: -20px;text-align: right;}
 .hand{cursor: pointer;}
-.action-bar{background-color: #f5fbff;padding: 8px 16px;border-radius: 6px 6px 0 0;}
+.action-bar{background-color: #cde7e0;padding: 8px 16px;border-radius: 6px 6px 0 0;}
 .breadcrumb{background: transparent;padding: 0; margin: 0;}
 .breadcrumb .breadcrumb-item{font-size: 14px !important;}
 .common-table table tr th {background: #596e7e;color: #FFFFFF;font-weight: 500;border-bottom: 0px solid #dee2e6;vertical-align: middle;border-top: none;}

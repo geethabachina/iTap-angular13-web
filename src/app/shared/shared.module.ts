@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,9 +13,24 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    RouterModule,
+    BsDatepickerModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
+  ],
+  exports:[
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    BsDatepickerModule,
+    RouterModule
   ]
 })
 export class SharedModule { }
