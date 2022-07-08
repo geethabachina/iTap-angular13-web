@@ -18,7 +18,7 @@
 <!-- <ngx-spinner type="ball-scale-multiple"></ngx-spinner> -->
 
   <!-- left side  -->
-  <div class="container-wrapper">
+  <div id="leftSection" class="container-wrapper">
     <div class="action-bar">
       <!-- <div class="row align-items-start">
     <div class="col-md-10 form-inline">
@@ -45,14 +45,16 @@
         <div class="col-md-6">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Administration</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Groups</li>
+              <!-- <li class="breadcrumb-item"><a href="#">Administration</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Groups</li> -->
+              <li class="breadcrumb-item">Administration</li>
+              <li class="breadcrumb-item">User Groups</li>
             </ol>
           </nav>
         </div>
         <div class="col-md-6 text-right">
-          <span class="mr-3 hand" (click)="minimise()"><i class="fa fa-th-large" aria-hidden="true"></i></span>
-          <span class="hand" (click)="expand()"><i class="fa fa-list"></i></span>
+          <span class="mr-3 hand" (click)="leftMinimise()"><i class="fa fa-th-large" aria-hidden="true"></i></span>
+          <span class="hand" (click)="leftExpand()"><i class="fa fa-list"></i></span>
         </div>
       </div>
     </div>
@@ -61,7 +63,7 @@
       <div class="row align-items-start">
         <div class="col-md-10 col-lg-10 col-xl-10 form-inline">
           <!-- <button type="button" class="btn btn-primary btn-sm" routerLinkActive="active" routerLink="/core/admin/addUserGroup"> -->
-          <button type="button" class="btn btn-primary btn-sm" (click)="editClick()">
+          <button type="button" class="btn btn-primary btn-sm" (click)="edit()">
             <i class="fa fa-plus mr-2" aria-hidden="true"></i>Add
           </button>
           <button
@@ -112,7 +114,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="panel panel-default">
       <div class="common-table panel-body">
@@ -188,7 +189,7 @@
               <tbody>
                 <tr>
                   <!-- <td class="hand blue-under" routerLinkActive="active" routerLink="/core/planning/shipParticular"> -->
-                  <td class="hand blue-under" (click)="viewClick()">
+                  <td class="hand blue-under" (click)="view()">
                     mispeled
                   </td>
                   <td>Mathias</td>
@@ -202,7 +203,7 @@
                   </td>
                   <td>
                     <!-- <i class="fa fa-pencil hand" aria-hidden="true" routerLinkActive="active" routerLink="/core/admin/addUserGroup"></i> -->
-                    <i class="fa fa-pencil hand" (click)="editClick()"></i>
+                    <i class="fa fa-pencil hand" (click)="edit()"></i>
                     <!-- <i class="fa fa-trash-o hand" aria-hidden="true" style="padding-left: 15px"></i> -->
                     <span data-toggle="modal" data-target="#exampleModal" style="padding-left: 15px"><i class="fa fa-trash-o hand mr-3"></i></span>
                   </td>
@@ -2457,7 +2458,7 @@
 
 
   <!-- right side  -->
- <div class="container-wrapper ml-3 w-100 overview-panel">
+ <div id="rightSection" class="container-wrapper ml-3 w-100 overview-panel">
      <div class="action-bar">
       <div class="row align-items-center">
         <div class="col-md-6">
@@ -2466,7 +2467,8 @@
         <div class="col-md-6 text-right">
           <span class="fa fa-pencil hand mr-3" aria-hidden="true" (click)="mode='edit'"></span>
           <span data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o hand mr-3"></i></span>
-          <span class="fa fa-expand hand"></span>
+          <span *ngIf="rightExpandIcon" class="fa fa-expand hand" (click)="rightExpand()"></span>
+          <span *ngIf="!rightExpandIcon" class="fa fa-compress hand" (click)="rightMinimise()"></span>
         </div>
       </div>
     </div>
@@ -2593,8 +2595,8 @@
       </div>
     </div>
     <div *ngIf="mode=='add'||mode=='edit'" class="text-right p-3" style="background-color: #e9e5e5;padding: 30px">
-      <button class="btn btn-primary btn-custom">Save</button>
-      <button class="btn btn-outline-secondary btn-custom f-black">Cancel</button>
+      <button class="btn btn-primary btn-custom" (click)="save()">Save</button>
+      <button class="btn btn-outline-secondary btn-custom f-black" (click)="view()">Cancel</button>
     </div>
   </div>
 

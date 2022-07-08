@@ -51,6 +51,7 @@ body.small-menu .left-menu ul li a i, body.small-menu .third-level ul li a i{mar
 .overview-panel{display: none;}
 .show-overview{display: flex;}
 .show-overview .overview-panel{display: block;}
+.show-right-overview{display: none;}
 .f-white{color: #fff}
 .f-black{color: black}
 .f-blue{color:#2294e3}

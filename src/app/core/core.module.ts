@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+// import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '../shared/shared.module';
+// import { RouterModule } from '@angular/router';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { CommonModule } from '@angular/common';
 
 import { PlanningModule } from './planning/planning.module';
 import { AdminModule } from './admin/admin.module';
@@ -19,14 +19,14 @@ import { PlanningComponent } from './planning/planning.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
+    // BrowserModule,
+    SharedModule,
+    //CommonModule,
+    //RouterModule,
+    //FormsModule,
+    //ReactiveFormsModule,
     PlanningModule,
     AdminModule,
-    SharedModule
   ],
   declarations: [
     LoginComponent,

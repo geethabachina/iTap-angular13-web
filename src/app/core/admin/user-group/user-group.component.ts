@@ -18,6 +18,7 @@ export class UserGroupComponent implements OnInit {
   filterClick: boolean = false;
   status: any = '';
   mode: any = 'view';
+  rightExpandIcon: boolean = true;
 
 
   constructor(
@@ -51,7 +52,7 @@ export class UserGroupComponent implements OnInit {
     this.dateRange = '';
   }
 
-  expand(){
+  leftExpand(){
     var element = document.getElementById("userGroup");
     if(element?.classList.contains('show-overview'))
     {
@@ -59,7 +60,7 @@ export class UserGroupComponent implements OnInit {
     }
   }
 
-  minimise(){
+  leftMinimise(){
     var element = document.getElementById("userGroup");
     element?.classList.add("show-overview");
     //left main menu collapse
@@ -69,15 +70,36 @@ export class UserGroupComponent implements OnInit {
     this.dashboardService.setNavCollapseStatus(false);
   }
 
-
-  viewClick(){
-    this.mode = 'view';
-    this.minimise();
+  rightMinimise(){
+    var element = document.getElementById("leftSection");
+    element?.classList.remove("show-right-overview");
+    var element1 = document.getElementById("rightSection");
+    element1?.classList.add("ml-3");
+    this.rightExpandIcon = true;
   }
 
-  editClick(){
+  rightExpand(){
+    var element = document.getElementById("leftSection");
+    element?.classList.add("show-right-overview");
+    var element1 = document.getElementById("rightSection");
+    element1?.classList.remove("ml-3");
+    this.rightExpandIcon = false;
+  }
+
+
+  view(){
+    this.mode = 'view';
+    this.leftMinimise();
+  }
+
+  edit(){
     this.mode = 'edit';
-    this.minimise();
+    this.leftMinimise();
+  }
+
+  save(){
+    this.mode = 'view';
+    this.toastr.success('', 'Saved successfully');
   }
 
   deleteSave(){
