@@ -42,8 +42,8 @@
       <div class="row align-items-start">
         <div class="col-md-10 col-lg-10 col-xl-10 form-inline">
           <!-- <button type="button" class="btn btn-primary btn-sm" routerLinkActive="active" routerLink="/core/admin/addUserGroup"> -->
-          <button type="button" class="btn btn-primary btn-sm" (click)="edit()"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add</button>
-          <button (click)="filterClick = !filterClick" type="button" class="btn btn-secondary btn-sm ml-2"><i class="fa fa-filter" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="edit()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          <button (click)="filterClick = !filterClick" type="button" class="btn btn-primary btn-sm ml-2"><i class="fa fa-filter" aria-hidden="true"></i></button>
           <select *ngIf="filterClick" [(ngModel)]="status" class="form-control ml-2 form-control-sm">
             <option value="" selected>Select Status</option>
             <option value="1">Open</option>
@@ -51,7 +51,7 @@
           </select>
           <div class="form-group form-inline ml-2">
             <input *ngIf="filterClick" type="text" [bsConfig]="dateConfig" autocomplete="off" class="form-control-sm form-controll-2 mr-2" style="border: 1px solid #ced4da" [(ngModel)]="dateRange" #dp="bsDaterangepicker" bsDaterangepicker placement="bottom"/>
-            <button *ngIf="filterClick" type="button" class="btn btn-secondary btn-sm" (click)="reset()"> Reset</button>
+            <button *ngIf="filterClick" type="button" class="btn btn-primary btn-sm" (click)="reset()"> Reset</button>
           </div>
         </div>
         <div class="col-md-2 col-lg-2 col-xl-2 mb-0">
@@ -90,10 +90,10 @@
                   <td class="hand blue-under" (click)="view()">{{row?.firstName}}</td>
                   <td>{{row?.lastName}}</td>
                   <td><span class="status-circle" [ngClass]="row?.status=='Open' ? 'status-green' : 'status-red'"></span>{{row?.status}}</td>
-                  <td [attr.id]="'rowLine' + i" data-toggle="collapse" (click)="collapseRemainingRows(i)" [attr.data-target]="'#demo' + i" class="accordion-toggle"><i class="fa fa-ellipsis-h"></i></td>
+                  <td class="hand"><i [attr.id]="'rowLine' + i" data-toggle="collapse" (click)="collapseRemainingRows(i)" [attr.data-target]="'#demo' + i" class="accordion-toggle" class="fa fa-ellipsis-h"></i></td>
                   <td>
                     <i class="fa fa-pencil hand" (click)="edit()"></i>
-                    <span data-toggle="modal" data-target="#exampleModal" style="padding-left: 15px"><i class="fa fa-trash-o hand mr-3"></i></span>
+                    <span style="padding-left: 15px"><i data-toggle="modal" data-target="#exampleModal" class="fa fa-trash-o hand mr-3"></i></span>
                   </td>
                 </tr>
                 <tr class="hidden-row">
@@ -111,7 +111,7 @@
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
                             <div class="label-title">Shipping Agent</div>
-                            <div class="field-value">{{row?.shippingAgent}}</div>
+                            <div class="field-value txt-trunc">{{row?.shippingAgent}}</div>
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
                             <div class="label-title">Loa</div>
@@ -184,13 +184,12 @@
     </div>
   </div>
 
-
   <!-- right side  -->
  <div id="rightSection" class="container-wrapper ml-3 w-100 overview-panel">
      <div class="action-bar">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <h6 class="m-0">Mispeled</h6>
+          <h6 class="m-0">Smith</h6>
         </div>
         <div class="col-md-6 text-right">
           <span class="fa fa-pencil hand mr-3" aria-hidden="true" (click)="mode='edit'"></span>
@@ -201,11 +200,11 @@
       </div>
     </div>
     <div class="p-3 overview-body">
-      <!-- view -->
+      <!-- view design -->
       <div *ngIf="mode=='view'" class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">First Name</div>
-          <div class="field-value">mispeled</div>
+          <div class="field-value">Smith</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Last Name</div>
@@ -213,9 +212,7 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Status</div>
-          <div class="field-value">
-            <span class="status-circle status-green"></span>Open
-          </div>
+          <div class="field-value"><span class="status-circle status-green"></span>Open</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Vessel Size</div>
@@ -223,31 +220,31 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Vessel Type</div>
-          <div class="field-value">type</div>
+          <div class="field-value">Conventional</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Shipping Agent</div>
-          <div class="field-value">Agent</div>
+          <div class="field-value">LBH SHIPPING SERVICES (M) SDN BHD</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Loa</div>
-          <div class="field-value">loa</div>
+          <div class="field-value">229.00</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Grt</div>
-          <div class="field-value">grt</div>
+          <div class="field-value">43502</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Last Port</div>
-          <div class="field-value">A Port</div>
+          <div class="field-value">Mathias</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Next Port</div>
-          <div class="field-value">B Port</div>
+          <div class="field-value">Aachen</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Final Port</div>
-          <div class="field-value">D Port</div>
+          <div class="field-value">-</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Created By</div>
@@ -267,59 +264,51 @@
         </div>
       </div>
 
-      <!-- add/edit -->
-      <div *ngIf="mode=='add'||mode=='edit'" class="row">
-        <!-- <div class="row" style="margin-bottom: 10px;"> -->
+      <!-- add/edit design-->
+       <div *ngIf="mode=='add'||mode=='edit'" class="row">
           <div class="col-4">
-            <label class="label-title required">First Name</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="First Name">
+            <label class="label-title required f-blue" style="font-weight: bold;">First Name</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="First Name">
           </div>
           <div class="col-4">
-            <label class="label-title">Last Name</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Last Name">
+            <label class="label-title f-blue" style="font-weight: bold;">Last Name</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Last Name">
           </div>
           <div class="col-4">
-            <label class="label-title required">Status</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Status">
+            <label class="label-title required f-blue" style="font-weight: bold;">Status</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Status">
           </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-bottom: 10px;"> -->
           <div class="col-4">
-            <label class="label-title required">Vessel Size</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Size">
+            <label class="label-title required f-blue" style="font-weight: bold;">Vessel Size</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Size">
           </div>
           <div class="col-4">
-            <label class="label-title required">Vessel Type</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Type">
+            <label class="label-title required f-blue" style="font-weight: bold;">Vessel Type</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Type">
           </div>
           <div class="col-4">
-            <label class="label-title">Shipping Agent</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Shipping Agent">
+            <label class="label-title f-blue" style="font-weight: bold;">Shipping Agent</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Shipping Agent">
           </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-bottom: 10px;"> -->
           <div class="col-4">
-            <label class="label-title required">Grt</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Grt">
+            <label class="label-title required f-blue" style="font-weight: bold;">Grt</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Grt">
           </div>
           <div class="col-4">
-            <label class="label-title">Last Port</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Last Port">
+            <label class="label-title f-blue" style="font-weight: bold;">Last Port</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Last Port">
           </div>
           <div class="col-4">
-            <label class="label-title">Next Port</label>
-            <input type="text" class="form-control form-control-sm placeholder-title" style="margin-bottom: 10px;" placeholder="Next Port">
+            <label class="label-title f-blue" style="font-weight: bold;">Next Port</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Next Port">
           </div>
-        <!-- </div> -->
 
-        <!-- <div class="row" style="margin-bottom: 10px;"> -->
           <div class="col-4">
-            <label class="label-title required">Final Port</label>
-            <input type="text" class="form-control form-control-sm placeholder-title"  placeholder="Final Port">
+            <label class="label-title required f-blue" style="font-weight: bold;">Final Port</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title"  placeholder="Final Port">
           </div>
-        <!-- </div> -->
       </div>
     </div>
     <div *ngIf="mode=='add'||mode=='edit'" class="text-right p-3" style="background-color: #e9e5e5;padding: 30px">
@@ -330,7 +319,6 @@
 
 
 </div>
-
 
 
 <!-- delete Modal -->
@@ -344,7 +332,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete 'Mispeled' User Group ?
+        Are you sure you want to delete 'Smith' User Group ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deleteSave()">Yes</button>

@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit {
         { name: "Seven Days", url: "#" }
       ]
     },
-    { name: "Merine Control",iconClass: "fa fa-wrench",active: false,
+    { name: "Marine Control",iconClass: "fa fa-wrench",active: false,
       submenu: [
         { name: "Ship Movement", url: "#" }
       ]
