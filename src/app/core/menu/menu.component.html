@@ -47,7 +47,7 @@
                 (click)="collapseSubMenu(i, j)"
                 [attr.data-target]="'#submenu' + i + j"
               >
-                <span class="hand">{{ submenu.name }}</span>
+                <span class="hand" style="color: black;">{{ submenu.name }}</span>
               </a>
               <div
                 *ngIf="submenu.submenu"

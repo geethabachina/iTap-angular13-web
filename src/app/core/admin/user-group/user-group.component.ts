@@ -19,6 +19,34 @@ export class UserGroupComponent implements OnInit {
   status: any = '';
   mode: any = 'view';
   rightExpandIcon: boolean = true;
+  tableData: any = [
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'1000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'2000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'3000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'mispeled',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'type',shippingAgent:'Agent',loa:'loa',grt:'grt',lastPort:'A Port',nextPort:'B Port',finalPort:'D Port',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+]
 
 
   constructor(
@@ -32,6 +60,19 @@ export class UserGroupComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
     }, 2000);
+  }
+
+  collapseRemainingRows(index:any){
+    for(var i=0;i<=this.tableData.length-1;i++){
+      var element = document.getElementById('rowLine'+ i);
+      var ele = document.getElementById('demo'+ i);
+      if(i==index){
+      }
+      else{
+        element?.classList.add("collapsed");
+        ele?.classList.remove("show");
+      }
+    }
   }
 
   sorting(columnName:any){
