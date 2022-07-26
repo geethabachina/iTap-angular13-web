@@ -9,3 +9,12 @@
   color: white;
   content: "/";
 }
+.br-10{
+  border-radius: 10px 10px 10px 10px !important;
+}
+
+.yellow-card{
+  height: 70px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: rgb(227, 184, 0)
+}

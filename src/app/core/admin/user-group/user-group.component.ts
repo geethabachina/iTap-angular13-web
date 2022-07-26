@@ -18,12 +18,14 @@ export class UserGroupComponent implements OnInit {
   filterClick: boolean = false;
   status: any = '';
   mode: any = 'view';
+  // mode: any ;
   rightExpandIcon: boolean = true;
+  leftExpandIcon: boolean = false;
   tableData: any = [
-  {firstName:'Smith',lastName:'Mathias',status:'Open',vesselSize:'1000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
-  {firstName:'Jonas',lastName:'Mathias',status:'Planned',vesselSize:'2000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
-  {firstName:'Smith',lastName:'Mathias',status:'Open',vesselSize:'3000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
-  {firstName:'Smith',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'Smith',lastName:'Mathias',status:'Berthed Vessels',vesselSize:'1000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'Jonas',lastName:'Mathias',status:'Arrived At Anchorage',vesselSize:'2000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'Smith',lastName:'Mathias',status:'Vessel Arriving Within 24 Hours',vesselSize:'3000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
+  {firstName:'Smith',lastName:'Mathias',status:'Vessel Arriving After 24 Hours',vesselSize:'4000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
   {firstName:'Smith',lastName:'Mathias',status:'Open',vesselSize:'4000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
   {firstName:'Jonas',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
   {firstName:'Jonas',lastName:'Mathias',status:'Planned',vesselSize:'4000',vesselType:'Conventional',shippingAgent:'LBH SHIPPING SERVICES (M) SDN BHD',loa:'229.00',grt:'43502',lastPort:'Aarhus',nextPort:'Aachen',finalPort:'-',createdBy:'Smith Jonas',createdDate:'03/07/2022',modifiedBy:'Smith Jonas',modifiedDate:'03/07/2022'},
@@ -60,6 +62,8 @@ export class UserGroupComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
     }, 2000);
+    // $("table#ProductTable").removeClass("table-striped");
+    // $("table#ProductTable").addClass("table-striped");
   }
 
   collapseRemainingRows(index:any){
@@ -94,6 +98,7 @@ export class UserGroupComponent implements OnInit {
   }
 
   leftExpand(){
+    this.leftExpandIcon = false;
     var element = document.getElementById("userGroup");
     if(element?.classList.contains('show-overview'))
     {
@@ -101,7 +106,9 @@ export class UserGroupComponent implements OnInit {
     }
   }
 
+
   leftMinimise(){
+    this.leftExpandIcon = true;
     var element = document.getElementById("userGroup");
     element?.classList.add("show-overview");
     //left main menu collapse

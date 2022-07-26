@@ -8,12 +8,17 @@
   type = "ball-atom"
 ></ngx-spinner> -->
 
-<ngx-spinner
+<!-- <ngx-spinner
   bdColor="rgba(51,51,51,0.8)"
   size="medium"
   color="#fff"
   type="ball-scale-multiple"
-></ngx-spinner>
+></ngx-spinner> -->
+
+<ngx-spinner>
+<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+<span class="sr-only">Loading...</span>
+</ngx-spinner>
 
 <!-- <ngx-spinner type="ball-scale-multiple"></ngx-spinner> -->
 
@@ -32,18 +37,26 @@
           </nav>
         </div>
         <div class="col-md-6 text-right">
-          <span class="mr-3 hand" (click)="leftMinimise()"><i class="fa fa-th-large" aria-hidden="true"></i></span>
-          <span class="hand" (click)="leftExpand()"><i class="fa fa-list"></i></span>
+          <span *ngIf="!leftExpandIcon" class="hover_tooltip-top hand" (click)="leftMinimise()"><i class="fa fa-th-large" aria-hidden="true"></i>
+            <span class="tooltiptext-top">Mininize</span>
+          </span>
+          <span *ngIf="leftExpandIcon" class="hover_tooltip-top hand" (click)="leftExpand()"><i class="fa fa-list"></i>
+            <span class="tooltiptext-top">Maximize</span>
+          </span>
         </div>
       </div>
     </div>
-
+<!------------------------------------------------------- filters ---------------------------------------------------------------->
     <div class="px-3 pt-3">
       <div class="row align-items-start">
-        <div class="col-md-10 col-lg-10 col-xl-10 form-inline">
+        <div class=" col-md-10 col-lg-10 col-xl-10 form-inline">
           <!-- <button type="button" class="btn btn-primary btn-sm" routerLinkActive="active" routerLink="/core/admin/addUserGroup"> -->
-          <button type="button" class="btn btn-primary btn-sm" (click)="edit()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-          <button (click)="filterClick = !filterClick" type="button" class="btn btn-primary btn-sm ml-2"><i class="fa fa-filter" aria-hidden="true"></i></button>
+          <button type="button" class="hover_tooltip-top btn btn-primary btn-sm" (click)="edit()"><i class="fa fa-plus" aria-hidden="true"></i>
+            <span class="tooltiptext-top">Add Uesr Group</span>
+          </button>
+          <button (click)="filterClick = !filterClick" type="button" class="hover_tooltip-top btn btn-primary btn-sm ml-2"><i class="fa fa-filter" aria-hidden="true"></i>
+            <span class="tooltiptext-top">Filter</span>
+          </button>
           <select *ngIf="filterClick" [(ngModel)]="status" class="form-control ml-2 form-control-sm">
             <option value="" selected>Select Status</option>
             <option value="1">Open</option>
@@ -60,13 +73,130 @@
       </div>
     </div>
 
+<!--------------------------------------------------------------------- cards ------------------------------------------------------>
+    <div *ngIf="!leftExpandIcon" class="py-2 px-0 d-flex align-items-center" style="margin-bottom: -13px !important;">
+      <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+        <!-- <div class="d-flex align-items-center col-4 px-0 yellow-card" [ngClass]="(mode == 'view'|| mode == 'edit') ? 'col-12 br-10' : ''"> -->
+        <div class="d-flex align-items-center col-4 px-0 yellow-card">
+          <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
+          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
+          <div class="px-2 text-center col-12">
+            <p class="mb-0 mr-2 font-weight-bold" style="font-size: 25px;border-bottom: 1px solid #dee2e6!important;">50</p>
+            <p class="mb-0 mr-2" style="font-size: 13px; padding-top: 5px;">Berthed Vessels</p>
+          </div>
+        </div>
+      </div>
+      <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+        <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: rgb(208, 121, 32)">
+          <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-cogs fa-2x"></i></p>
+          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
+          <div class="px-2 text-center col-12">
+            <p class="mb-0 mr-2 font-weight-bold" style="font-size: 25px;border-bottom: 1px solid #dee2e6!important;">10</p>
+            <p class="mb-0 mr-2" style="font-size: 13px; padding-top: 5px;">Arrived At Anchorage</p>
+          </div>
+        </div>
+      </div>
+      <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+        <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: rgb(65, 174, 169)">
+          <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
+          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
+          <div class="px-2 text-center col-12">
+            <p class="mb-0 mr-2 font-weight-bold" style="font-size: 25px;border-bottom: 1px solid #dee2e6!important;">20</p>
+            <p class="mb-0 mr-2" style="font-size: 13px; padding-top: 5px;">Vessel Arriving Within 24 Hours</p>
+          </div>
+        </div>
+      </div>
+      <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:5px; margin-right: 14px">
+        <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: #aaaac7">
+          <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
+          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
+          <div class="px-2 text-center col-12">
+            <p class="mb-0 mr-2 font-weight-bold" style="font-size: 25px;border-bottom: 1px solid #dee2e6!important;">45</p>
+            <p class="mb-0 mr-2" style="font-size: 13px; padding-top: 5px;">Vessel Arriving After 24 Hours</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:5px; margin-right: 5px">
+        <div class="d-flex align-items-center col-9 px-0" style="height: 62px; border-radius: 10px 0px 0px 10px;background-color: rgb(153, 101, 41)">
+          <p class="mb-0 f-white pl-4" style="font-size: 15px;">Arrived At Anchorage</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-3 px-0" style="height:62px; border-radius: 0px 10px 10px 0px;background-color: rgb(208, 121, 32);">
+          <div class="px-2 text-center col-6">
+            <p class="mb-0 f-white mr-2 font-weight-bold" style="font-size: 25px; line-height: 1">18</p>
+          </div>
+        </div>
+      </div>
+      <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:5px; margin-right: 5px">
+        <div class="d-flex align-items-center col-9 px-0" style="height: 62px; border-radius: 10px 0px 0px 10px;background-color: rgb(46, 122, 119)">
+          <p class="mb-0 f-white pl-4" style="font-size: 15px;">Vessel Arriving Within 24 Hours</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-3 px-0" style="height:62px; border-radius: 0px 10px 10px 0px;background-color: rgb(65, 174, 169);">
+          <div class="px-2 text-center col-6">
+            <p class="mb-0 f-white mr-2 font-weight-bold" style="font-size: 25px; line-height: 1">21</p>
+          </div>
+        </div>
+      </div>
+      <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:5px; margin-right: 14px">
+        <div class="d-flex align-items-center col-9 px-0" style="height: 62px; border-radius: 10px 0px 0px 10px;background-color: rgb(64, 31, 45);">
+          <p class="mb-0 f-white pl-4" style="font-size: 15px;">Vessel Arriving After 24 Hours</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-3 px-0" style="height:62px; border-radius: 0px 10px 10px 0px;background-color: rgb(95, 41, 64);">
+          <div class="px-2 text-center col-6">
+            <p class="mb-0 f-white mr-2 font-weight-bold" style="font-size: 25px; line-height: 1">15</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+<!--------------------------------------------------------------------- cards(Icons) ------------------------------------------------------>
+<!-- data-toggle="tooltip" data-placement="top" title="Arrived At Anchorage"    -->
+<div *ngIf="leftExpandIcon" class="py-2 px-0 d-flex align-items-center" style="margin-bottom: -13px !important;">
+      <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+        <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: rgb(208, 121, 32)">
+          <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
+          <span class="tooltiptext-top">Berthed Vessels</span>
+        </div>
+      </div>
+
+      <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+        <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: rgb(208, 121, 32)">
+          <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-cogs fa-2x"></i></p>
+          <span class="tooltiptext-top">Arrived At Anchorage</span>
+        </div>
+      </div>
+
+      <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+        <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: rgb(65, 174, 169)">
+          <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
+          <span class="tooltiptext-top">Vessel Arriving Within 24 Hours</span>
+        </div>
+      </div>
+
+      <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:5px; margin-right: 14px">
+        <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: #aaaac7">
+          <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
+          <span class="tooltiptext-top">Vessel Arriving After 24 Hours</span>
+        </div>
+      </div>
+    </div>
+
     <div class="panel panel-default">
       <div class="common-table panel-body">
         <div class="p-3">
-          <!-- left section(table) -->
-          <div class="table-responsive" style="max-height: calc(100vh - 245px); overflow-y: auto">
-            <!-- <table class="table table-hover table-striped"> -->
-            <table class="table table-hover">
+<!--------------------------------------------------------- left section(table) ---------------------------------------------------------------------------------------->
+          <div class="table-responsive" style="max-height: calc(100vh - 300px); overflow-y: auto">
+            <table class="table table-hover table-striped">
+            <!-- <table class="table table-hover"> -->
               <thead class="table-header">
                 <tr>
                   <th class="hand" (click)="sorting('firstName')">First Name
@@ -89,7 +219,16 @@
                 <tr>
                   <td class="hand blue-under" (click)="view()">{{row?.firstName}}</td>
                   <td>{{row?.lastName}}</td>
-                  <td><span class="status-circle" [ngClass]="row?.status=='Open' ? 'status-green' : 'status-red'"></span>{{row?.status}}</td>
+                  <td>
+                    <!-- <span class="status-circle" [ngClass]="row?.status=='Open' ? 'status-green' : 'status-red'"></span> -->
+                    <span *ngIf="row?.status=='Open'" class="status-circle status-green"></span>
+                    <span *ngIf="row?.status=='Planned'" class="status-circle status-red"></span>
+                    <span *ngIf="row?.status=='Berthed Vessels'" class="status-circle status-yellow"></span>
+                    <span *ngIf="row?.status=='Arrived At Anchorage'" class="status-circle status-orange"></span>
+                    <span *ngIf="row?.status=='Vessel Arriving Within 24 Hours'" class="status-circle status-lightblue"></span>
+                    <span *ngIf="row?.status=='Vessel Arriving After 24 Hours'" class="status-circle status-purple"></span>
+                    {{row?.status}}
+                  </td>
                   <td class="hand"><i [attr.id]="'rowLine' + i" data-toggle="collapse" (click)="collapseRemainingRows(i)" [attr.data-target]="'#demo' + i" class="accordion-toggle" class="fa fa-ellipsis-h"></i></td>
                   <td>
                     <i class="fa fa-pencil hand" (click)="edit()"></i>
@@ -184,7 +323,7 @@
     </div>
   </div>
 
-  <!-- right side  -->
+<!-------------------------------------------------------------------- right side  ------------------------------------------------------->
  <div id="rightSection" class="container-wrapper ml-3 w-100 overview-panel">
      <div class="action-bar">
       <div class="row align-items-center">
@@ -192,15 +331,23 @@
           <h6 class="m-0">Smith</h6>
         </div>
         <div class="col-md-6 text-right">
-          <span class="fa fa-pencil hand mr-3" aria-hidden="true" (click)="mode='edit'"></span>
-          <span data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o hand mr-3"></i></span>
-          <span *ngIf="rightExpandIcon" class="fa fa-expand hand" (click)="rightExpand()"></span>
-          <span *ngIf="!rightExpandIcon" class="fa fa-compress hand" (click)="rightMinimise()"></span>
+          <span class="hover_tooltip-top" aria-hidden="true" (click)="mode='edit'"><i class="fa fa-pencil hand mr-3"></i>
+            <span class="tooltiptext-top">Edit</span>
+          </span>
+          <span class="hover_tooltip-top" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o hand mr-3"></i>
+            <span class="tooltiptext-top">Delete</span>
+          </span>
+          <span *ngIf="rightExpandIcon" class="hover_tooltip-top" (click)="rightExpand()"><i class="fa fa-expand hand"></i>
+            <span class="tooltiptext-top">Expand</span>
+          </span>
+          <span *ngIf="!rightExpandIcon" class="hover_tooltip-top" (click)="rightMinimise()"><i class="fa fa-compress hand"></i>
+            <span class="tooltiptext-top">Collapse</span>
+          </span>
         </div>
       </div>
     </div>
     <div class="p-3 overview-body">
-      <!-- view design -->
+      <!----------------------------------------------------------- view design -------------------------------------------------------------------->
       <div *ngIf="mode=='view'" class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">First Name</div>
@@ -264,7 +411,7 @@
         </div>
       </div>
 
-      <!-- add/edit design-->
+      <!-------------------------------------- add/edit design------------------------------------------------------------->
        <div *ngIf="mode=='add'||mode=='edit'" class="row">
           <div class="col-4">
             <label class="label-title required f-blue" style="font-weight: bold;">First Name</label>
@@ -321,7 +468,7 @@
 </div>
 
 
-<!-- delete Modal -->
+<!----------------------------------------------- delete Modal --------------------------------------------------------------->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

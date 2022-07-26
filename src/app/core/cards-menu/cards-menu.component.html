@@ -1,0 +1,414 @@
+<!-- <app-header></app-header> -->
+
+<nav id="header" class="navbar-expand-md top-nav pt-0 main-header">
+  <div class="navbar-collapse d-flex">
+      <div class="nav-item d-flex align-items-center">
+          <img src="assets/css/images/iTAP-logo2.png" class="image logo">
+      </div>
+  </div>
+
+  <ul class="nav justify-content-end col-sm-5 col-md-7 pr-0">
+      <li class="nav-item dropdown user-profile-menu" id="rightBarButton">
+          <a class="nav-item nav-link dropdown-toggle mr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="map-card-image" [src]="photoUrl">
+              <span class="pl-2 d-none d-lg-inline username-text">Geetha</span>
+          </a>
+          <div style="min-width: 18rem; border-radius:16px;" class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="bd-versions">
+              <a class="dropdown-item py-3 px-4 drop-down-top-border">
+                  <div class="d-flex">
+                      <div class="col-3 p-0">
+                          <img class="profile-card-image" [src]="photoUrl">
+                      </div>
+                      <div class="col p-0 transform-y-10">
+                          <div class="pl-2 text-2 font-weight-bold text-muted elip" style="width: 185px;">Geetha Gaddipati</div>
+                          <div class="pl-2 text-2 font-weight-light text-secondary">geetha@gmail.com</div>
+                      </div>
+                  </div>
+              </a>
+              <a class="dropdown-item py-3 pl-4 d-flex align-items-center">
+                  <i class="fa fa-user"></i>
+                  <p class="pl-3 text-2 mb-0">Change Password</p>
+              </a>
+              <a class="border-bottom-0 dropdown-item pl-4 pb-3 pt-3 drop-down-bottom-border hand d-flex align-items-center" routerLinkActive="active" routerLink="/login">
+                  <i class="fa fa-sign-out" style="color: #f39d9d;"></i>
+                  <p class="pl-2 text-2 mb-0" style="color: #f39d9d;">logout</p>
+              </a>
+          </div>
+      </li>
+  </ul>
+</nav>
+
+
+<!------------------------------------------------- cards -------------------------------------------------------------------->
+
+<div class="row ml-1" style="padding-top: 55px!important;">
+  <div class="col-md-2 card bg-light mb-3 hand box-al" routerLinkActive="active" routerLink="/core/admin/userGroup">
+    <div class="card-header" style="text-align: center;background-color: white;">
+      <i class="fa fa-wrench f-darkblue fa-3x" style="color: rebeccapurple;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title" style="text-align: center;">Administration</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: white;">
+      <i class="fa fa-calendar f-darkblue fa-3x" style="color: #f4b991;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title" style="text-align: center;">Planning</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: white;">
+      <i class="fa fa-calendar f-darkblue fa-3x" style="color: #7bfc01;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title" style="text-align: center;">Berth Planning</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: white;">
+      <i class="fa fa-wrench f-darkblue fa-3x" style="color: #f0bade;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title" style="text-align: center;">Marine Control</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: white;">
+      <i class="fa fa-file-text f-darkblue fa-3x" style="color: cadetblue;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title" style="text-align: center;">Documentation</h5>
+    </div>
+  </div>
+  </div>
+
+  <div class="row ml-1">
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-home f-darkblue fa-3x" style="color: #ffc0cb;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">Warehouse</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-file-text f-darkblue fa-3x" style="color: #00ffff;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">Billing</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-snowflake-o f-darkblue fa-3x" style="color: #c6b7d4;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">LBT</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-window-restore f-darkblue fa-3x" style="color: #ea967a;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">STEVEDORE</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3 hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-gavel f-darkblue fa-3x" style="color: #00fa99;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">Operations</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ml-1">
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-money f-darkblue fa-3x" style="color: #00bffe;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">Finance</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-building-o f-darkblue fa-3x" style="color: #fea500;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">Gate</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-file-text-o f-darkblue fa-3x" style="color: #b8860b;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">Reports</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: white;">
+        <i class="fa fa-heart f-darkblue fa-3x" style="color: #ff69b3;"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title" style="text-align: center;">Themes</h5>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- <div class="row ml-1" style="padding-top: 55px!important;">
+  <div class="col-md-2 card bg-light mb-3 hand box-al" routerLinkActive="active" routerLink="/core/admin/userGroup">
+    <div class="card-header" style="text-align: center;background-color: yellow;">
+      <i class="fa fa-wrench fa-3x"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Administration</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: #f5b992;">
+      <i class="fa fa-calendar fa-3x"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Planning</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: lawngreen;">
+      <i class="fa fa-calendar fa-3x"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Berth Planning</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: #f0badf;">
+      <i class="fa fa-wrench fa-3x"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Marine Control</h5>
+    </div>
+  </div>
+  <div class="col-md-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;background-color: #eee5e5;">
+      <i class="fa fa-file-text fa-3x"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Documentation</h5>
+    </div>
+  </div>
+  </div>
+
+  <div class="row ml-1">
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: pink;">
+        <i class="fa fa-home fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">Warehouse</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: aqua;">
+        <i class="fa fa-file-text fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">Billing</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: #c6b7d5;">
+        <i class="fa fa-snowflake-o fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">LBT</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: darksalmon;">
+        <i class="fa fa-window-restore fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">STEVEDORE</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3 hand box-al">
+      <div class="card-header" style="text-align: center;background-color: mediumspringgreen;">
+        <i class="fa fa-gavel fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">Operations</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ml-1">
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: deepskyblue;">
+        <i class="fa fa-money fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">Finance</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: orange;">
+        <i class="fa fa-building-o fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">Gate</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: darkgoldenrod;">
+        <i class="fa fa-file-text-o fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">Reports</h5>
+      </div>
+    </div>
+    <div class="col-2 card bg-light mb-3  hand box-al">
+      <div class="card-header" style="text-align: center;background-color: hotpink;">
+        <i class="fa fa-heart fa-3x"></i>
+      </div>
+      <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+        <h5 class="card-title f-blue" style="text-align: center;">Themes</h5>
+      </div>
+    </div>
+  </div> -->
+
+
+
+
+
+<!-- <div class="row ml-1" style="padding-top: 55px!important;">
+<div class="col-md-2 card bg-light mb-3 hand box-al" routerLinkActive="active" routerLink="/core/admin/userGroup">
+  <div class="card-header" style="text-align: center;">
+    <i class="fa fa-wrench f-white fa-3x" style="color: yellow;"></i>
+  </div>
+  <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+    <h5 class="card-title f-blue" style="text-align: center;">Administration</h5>
+  </div>
+</div>
+<div class="col-md-2 card bg-light mb-3 hand box-al">
+  <div class="card-header" style="text-align: center;">
+    <i class="fa fa-calendar f-white fa-3x" style="color: #f5b992;"></i>
+  </div>
+  <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+    <h5 class="card-title f-blue" style="text-align: center;">Planning</h5>
+  </div>
+</div>
+<div class="col-md-2 card bg-light mb-3 hand box-al">
+  <div class="card-header" style="text-align: center;">
+    <i class="fa fa-calendar f-white fa-3x" style="color: lawngreen;"></i>
+  </div>
+  <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+    <h5 class="card-title f-blue" style="text-align: center;">Berth Planning</h5>
+  </div>
+</div>
+<div class="col-md-2 card bg-light mb-3 hand box-al">
+  <div class="card-header" style="text-align: center;">
+    <i class="fa fa-wrench f-white fa-3x" style="color: #f0badf;"></i>
+  </div>
+  <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+    <h5 class="card-title f-blue" style="text-align: center;">Marine Control</h5>
+  </div>
+</div>
+<div class="col-md-2 card bg-light mb-3 hand box-al">
+  <div class="card-header" style="text-align: center;">
+    <i class="fa fa-file-text f-white fa-3x" style="color: coral;"></i>
+  </div>
+  <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+    <h5 class="card-title f-blue" style="text-align: center;">Documentation</h5>
+  </div>
+</div>
+</div>
+
+<div class="row ml-1">
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-home f-white fa-3x" style="color: pink;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Warehouse</h5>
+    </div>
+  </div>
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-file-text f-white fa-3x" style="color: aqua;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Billing</h5>
+    </div>
+  </div>
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-snowflake-o f-white fa-3x" style="color: #c6b7d5;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">LBT</h5>
+    </div>
+  </div>
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-window-restore f-white fa-3x" style="color: darksalmon;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">STEVEDORE</h5>
+    </div>
+  </div>
+  <div class="col-2 card bg-light mb-3 hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-gavel f-white fa-3x" style="color: mediumspringgreen;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Operations</h5>
+    </div>
+  </div>
+</div>
+
+<div class="row ml-1">
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-money f-white fa-3x" style="color: deepskyblue;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Finance</h5>
+    </div>
+  </div>
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-building-o f-white fa-3x" style="color: orange;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Gate</h5>
+    </div>
+  </div>
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-file-text-o f-white fa-3x" style="color: lightgoldenrodyellow;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Reports</h5>
+    </div>
+  </div>
+  <div class="col-2 card bg-light mb-3  hand box-al">
+    <div class="card-header" style="text-align: center;">
+      <i class="fa fa-heart f-white fa-3x" style="color: orangered;"></i>
+    </div>
+    <div class="card-body" style="background-color: white;border-radius: 0 0 25px 25px;">
+      <h5 class="card-title f-blue" style="text-align: center;">Themes</h5>
+    </div>
+  </div>
+</div> -->
+
+
+

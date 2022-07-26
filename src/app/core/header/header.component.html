@@ -1,6 +1,9 @@
 <nav id="header" class="navbar-expand-md top-nav pt-0 main-header">
   <div class="navbar-collapse d-flex">
       <div class="nav-item d-flex align-items-center">
+        <!-- <div class="f-white pl-2 hand" routerLinkActive="active" routerLink="/menuCards">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div> -->
           <img src="assets/css/images/iTAP-logo2.png" class="image logo">
           <img *ngIf="bigMenu" class="hand hambuger" (click)="toggleSideBar()" src="../../../../assets/css/images/box.png" alt="">
           <img *ngIf="!bigMenu" class="hand hambuger" (click)="toggleSideBar()" src="../../../../assets/css/images/collapse-img.png" alt="">
@@ -57,7 +60,25 @@
                       </div>
                   </div>
               </a>
-              <a class="dropdown-item py-3 pl-4 d-flex align-items-center" routerLinkActive="active" routerLink="/dashboard/profile/mySettings">
+              <!-- <a class="dropdown-item py-3 pl-4 d-flex align-items-center" routerLinkActive="active" routerLink="/menuCards">
+                <i class="fa fa-server"></i>
+                <p class="pl-3 text-2 mb-0">Change Menu</p>
+              </a> -->
+              <div class="dropdown-item border-bottom-0 pl-4 py-2 d-flex align-items-center justify-content-between" style="padding-right: 20px;">
+                <button class="btn d-flex align-items-center px-2 py-1 mr-1 languages-button" style="font-size: 11px; background: transparent; border: 1px solid #dedede;" type="button" [ngClass]="{'btn-on': currentLang == 'English'}">
+                    <img class="flag mr-1" src="../../../../assets/css/images/languages/en.png" alt="">
+                    <p class="mb-0 text-2">ENG</p>
+                </button>
+                <button class="btn d-flex align-items-center px-2 py-1 mr-1 languages-button" style="font-size: 11px; background: transparent; border: 1px solid #dedede;" type="button" [ngClass]="{'btn-on': currentLang == 'Malay'}">
+                    <img class="flag mr-1" src="../../../../assets/css/images/languages/my.png" alt="">
+                    <p class="mb-0 text-2">BM</p>
+                </button>
+                <button class="btn d-flex align-items-center px-2 py-1 mr-1 languages-button" style="font-size: 11px; background: transparent; border: 1px solid #dedede;" type="button" [ngClass]="{'btn-on': currentLang == 'Chinese'}">
+                    <img class="flag mr-2" src="../../../../assets/css/images/languages/ch.png" alt="">
+                    <p class="mb-0 text-2">中文</p>
+                </button>
+            </div>
+              <a class="dropdown-item py-3 pl-4 d-flex align-items-center">
                   <i class="fa fa-user"></i>
                   <p class="pl-3 text-2 mb-0">Change Password</p>
               </a>

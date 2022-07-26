@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
   photoUrl: string = '../../../../assets/css/images/user-default-white.png';
   bigMenu: boolean = true;
   refreshStatus: Subscription;
+  currentLang="English";
+
 
   constructor(
     private dashboardService : DashboardService,

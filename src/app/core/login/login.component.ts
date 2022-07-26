@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
       return;
     }
     //alert('SUCCESS!!');
-    this.router.navigate(['core']);
+    // this.router.navigate(['core']);
+    this.router.navigate(['menuCards']);
   }
 
 

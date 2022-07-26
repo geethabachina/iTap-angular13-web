@@ -29,6 +29,7 @@ import { ShipParticularComponent } from './core/planning/ship-particular/ship-pa
 import { PlanningComponent } from './core/planning/planning.component';
 import { CoreComponent } from './core/core.component';
 import { AddUserGroupComponent } from './core/admin/user-group/add-user-group/add-user-group.component';
+import { CardsMenuComponent } from './core/cards-menu/cards-menu.component';
 
 
 const adminRoutes: Routes = [
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'menuCards',
+    component: CardsMenuComponent
   },
   {
     path: 'menu',

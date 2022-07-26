@@ -1,14 +1,20 @@
 <div class="mainContainer">
   <div class="collapse show d-md-flex bg-light left-menu short-menu" id="sidebar" id="navbarSupportedContent">
     <ul class="nav flex-column flex-nowrap" id="menu" (mouseenter)="mouseOverFun()" (mouseleave)="mouseLeave()">
+      <li class="f-white hand abc" style="padding: 8px 10px;" routerLinkActive="active" routerLink="/menuCards">
+        <i class="fa fa-arrow-left" aria-hidden="true"><span *ngIf="bigMenu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Main Menu</span></i>
+      </li>
+
       <li *ngFor="let menu of menus; let i = index" class="parent nav-item">
-        <a class="nav-link collapsed text-truncate" [id]="'menuIcon' + i" data-toggle="collapse" (click)="collapseMenu(i)" [attr.data-target]="'#menu' + i">
+   <!-- <a class="nav-link collapsed text-truncate" [id]="'menuIcon' + i" data-toggle="collapse" (click)="collapseMenu(i)" [attr.data-target]="'#menu' + i"> -->
+        <a class="nav-link text-truncate" [id]="'menuIcon' + i" data-toggle="collapse" (click)="collapseMenu(i)" [attr.data-target]="'#menu' + i">
           <i [class]="menu.iconClass"></i><span class="pl-2 hand">{{ menu.name }}</span>
         </a>
-        <div class="collapse second-level" [attr.id]="'menu' + i" aria-expanded="false">
+   <!-- <div class="collapse second-level" [attr.id]="'menu' + i" aria-expanded="false"> -->
+        <div class="collapse second-level show" [attr.id]="'menu' + i" aria-expanded="false">
           <ul class="flex-column pl-2 nav">
             <li *ngFor="let submenu of menu.submenu; let j = index" class="child nav-item">
-              <a class="text-truncate collapsed py-1" [ngClass]="submenu.submenu ? 'nav-link' : 'pl-3'" [id]="'submenuIcon' + i + j"
+              <a class="text-truncate collapsed py-1" [ngClass]="submenu.submenu ? 'nav-link' : ''" [id]="'submenuIcon' + i + j"
                 data-toggle="collapse" (click)="collapseSubMenu(i, j)" [attr.data-target]="'#submenu' + i + j">
                 <span class="hand">{{ submenu.name }}</span>
               </a>

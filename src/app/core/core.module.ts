@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '../shared/shared.module';
+// import { BrowserModule } from '@angular/platform-browser';
 // import { RouterModule } from '@angular/router';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { CommonModule } from '@angular/common';
@@ -15,12 +15,13 @@ import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
 import { PlanningComponent } from './planning/planning.component';
+import { CardsMenuComponent } from './cards-menu/cards-menu.component';
 
 
 @NgModule({
   imports: [
-    // BrowserModule,
     SharedModule,
+    // BrowserModule,
     //CommonModule,
     //RouterModule,
     //FormsModule,
@@ -35,7 +36,8 @@ import { PlanningComponent } from './planning/planning.component';
     HeaderComponent,
     DashboardComponent,
     AdminComponent,
-    PlanningComponent
+    PlanningComponent,
+    CardsMenuComponent
   ]
 })
 export class CoreModule { }
