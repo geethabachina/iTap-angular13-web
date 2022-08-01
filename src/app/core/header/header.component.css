@@ -2,7 +2,14 @@
 .notify{left: 24px;top: 4px;}
 .dropdown-menu{box-shadow: 0px 5px 10px rgba(0,0,0,0.15) !important;border: none;}
 .main-header{position: absolute;left: 0;right: 0;}
-.top-nav{display: flex; background-color: #2c67a7; flex-grow: 1; height: 45px;box-shadow: 0px 5px 10px rgba(0,0,0,0.10);}
+.top-nav{
+  display: flex;
+  /* background-color: #2c67a7;  */
+  background-image: linear-gradient(to top, rgba(0,0,128,1), rgba(0, 0, 128,0.75));
+  flex-grow: 1;
+  height: 45px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.10);
+}
 .hambuger{width: 16px;}
 .map-card-image {
   width: 30px;

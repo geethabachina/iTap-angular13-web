@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-body{font-family: 'Roboto', sans-serif;scrollbar-width: thin;}
+body{font-family: 'Roboto', sans-serif !important;scrollbar-width: thin;}
 .fs-12{font-size: 12px;}
 .fs-14{font-size: 14px;}
 .mainContainer{display: flex;background-color: #e4e4e4;padding-top: 45px;}
 .content-container{padding: 16px;margin-top: 55px;}
-.container-wrapper{background-color: #FFFFFF;border-radius: 8px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);width: 100%;}
+.container-wrapper{background-color: #FFFFFF;border-radius: 8px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);width: 100%;overflow: hidden;}
 .right-panel{padding: 16px;width: 100%;max-height: calc(100vh - 44px);}
 .small-menu .main-header{left: 0 !important;}
 .small-menu .left-menu{flex: 0 0 60px !important;}
@@ -18,17 +18,24 @@ body{font-family: 'Roboto', sans-serif;scrollbar-width: thin;}
 .alert {color: #dc3545;padding-top: 5px!important;margin-bottom: -14px;font-size: 10px;margin-right: -20px;text-align: right;}
 .hand{cursor: pointer;}
 .action-bar{
-  background-color: #7f8593;
-  /* background-color:#2c67a7; */
+  /* background-color: #7f8593; */
+  background-color:#2c67a7;
   padding: 8px 16px;
   border-radius: 6px 6px 0 0;
   color: white;
 }
 .breadcrumb{background: transparent;padding: 0; margin: 0;}
 .breadcrumb .breadcrumb-item{font-size: 14px !important;}
-/* .common-table table tr th {background: lightskyblue;color: black;font-weight: 500;border-bottom: 0px solid #dee2e6;vertical-align: middle;border-top: none;} */
-.common-table table tr th {background: darkgray;color: black;font-weight: 500;border-bottom: 0px solid #dee2e6;vertical-align: middle;border-top: none;}
-/* .common-table table tr th {background: #e9e5e5;color: black;font-weight: 500;border-bottom: 0px solid #dee2e6;vertical-align: middle;border-top: none;} */
+.common-table table tr th {
+  /* background: darkgray; */
+  /* background: #e9e5e5; */
+  background: lightskyblue;
+  color: black;
+  font-weight: 500;
+  border-bottom: 0px solid #dee2e6;
+  vertical-align: middle;
+  border-top: none;
+}
 .common-table table tr td, .common-table table tr th{font-size: 14px;padding:8px 15px;border-collapse: collapse;}
 .common-table table tr th:last-child{border-top-right-radius: 6px;}
 .common-table table tr th:first-child{border-top-left-radius: 6px;}
