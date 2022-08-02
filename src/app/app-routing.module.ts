@@ -31,6 +31,7 @@ import { CoreComponent } from './core/core.component';
 import { AddUserGroupComponent } from './core/admin/user-group/add-user-group/add-user-group.component';
 import { CardsMenuComponent } from './core/cards-menu/cards-menu.component';
 import { IidBillingComponent } from './core/billing/iid-billing/iid-billing.component';
+import { ServiceVoucherBillComponent } from './core/billing/service-voucher-bill/service-voucher-bill.component';
 
 
 const adminRoutes: Routes = [
@@ -47,6 +48,10 @@ const billingRoutes: Routes = [
   {
     path: 'iidBilling',
     component: IidBillingComponent,
+  },
+  {
+    path: 'serviceVoucherBill',
+    component: ServiceVoucherBillComponent,
   }
 ];
 

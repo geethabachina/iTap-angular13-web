@@ -104,7 +104,7 @@ export class MenuComponent implements OnInit {
         { name: "IID/IED Billing",active: false,url: "core/billing/iidBilling"},
         { name: "Billing Checklist",active: false, url: "#"},
         { name: "General Billing",active: false, url: "#"},
-        { name: "Service Voucher Billing",active: false, url: "#"},
+        { name: "Service Voucher Billing",active: false, url: "core/billing/serviceVoucherBill"},
         { name: "Port Police Service Voucher Billing",active: false, url: "#"},
         { name: "Split Account",active: false, url: "#",submenu: [{ name: "Request",iconClass: "fa fa-clock-o", url: "#" },{ name: "Approval",iconClass: "fa fa-clock-o", url: "#" }]},
         { name: "LCB Penalty Billing",active: false, url: "#"},
@@ -145,6 +145,21 @@ export class MenuComponent implements OnInit {
         if(this.router.url.includes("core/billing/iidBilling")){
           this.menusAll[i].submenu[2].active = true; //to apply hover class
         }
+        else if(this.router.url.includes("core/billing/serviceVoucherBill")){
+          this.menusAll[i].submenu[5].active = true; //to apply hover class
+        }
+      }
+    }
+  }
+
+  subMenuClick(subIndex:any){
+    debugger
+    for(var i=0;i<=this.menus[0].submenu.length-1;i++){
+      if(i==subIndex){
+        this.menus[0].submenu[i].active = true; //to apply hover class
+      }
+      else{
+        this.menus[0].submenu[i].active = false; //to apply hover class
       }
     }
   }

@@ -18,7 +18,7 @@
                 data-toggle="collapse" (click)="collapseSubMenu(i, j)" [attr.data-target]="'#submenu' + i + j">
                 <span class="hand">{{ submenu.name }}</span>
               </a>
-              <a *ngIf="submenu.url" class="text-truncate collapsed py-1" routerLinkActive="active" routerLink="/{{ submenu.url }}" [ngClass]="submenu.submenu ? 'nav-link' : submenu.active?'active-bg':''" [id]="'submenuIcon' + i + j"
+              <a *ngIf="submenu.url" class="text-truncate collapsed py-1" routerLinkActive="active" routerLink="/{{ submenu.url }}" (click)="subMenuClick(j)" [ngClass]="submenu.submenu ? 'nav-link' : submenu.active?'active-bg':''" [id]="'submenuIcon' + i + j"
                 data-toggle="collapse" (click)="collapseSubMenu(i, j)" [attr.data-target]="'#submenu' + i + j">
                 <span class="hand">{{ submenu.name }}</span>
               </a>
