@@ -32,7 +32,8 @@
               <!-- <li class="breadcrumb-item"><a href="#">Administration</a></li>
               <li class="breadcrumb-item active" aria-current="page">User Groups</li> -->
               <li class="breadcrumb-item">Administration</li>
-              <li class="breadcrumb-item">User Groups</li>
+              <li class="breadcrumb-item">User Administration</li>
+              <li class="breadcrumb-item">Users</li>
             </ol>
           </nav>
         </div>
@@ -52,15 +53,25 @@
         <div class=" col-md-10 col-lg-10 col-xl-10 form-inline">
           <!-- <button type="button" class="btn btn-primary btn-sm" routerLinkActive="active" routerLink="/core/admin/addUserGroup"> -->
           <button type="button" class="hover_tooltip-top btn btn-primary btn-sm" (click)="edit()"><i class="fa fa-plus" aria-hidden="true"></i>
-            <span class="tooltiptext-top">Add Uesr Group</span>
+            <span class="tooltiptext-top">Add User</span>
           </button>
           <button (click)="filterClick = !filterClick" type="button" class="hover_tooltip-top btn btn-primary btn-sm ml-2"><i class="fa fa-filter" aria-hidden="true"></i>
             <span class="tooltiptext-top">Filter</span>
           </button>
           <select *ngIf="filterClick" [(ngModel)]="status" class="form-control ml-2 form-control-sm">
             <option value="" selected>Select Status</option>
-            <option value="1">Open</option>
-            <option value="2">Planned</option>
+            <option value="1">ACTIVE</option>
+            <option value="2">INACTIVE</option>
+          </select>
+          <select *ngIf="filterClick" [(ngModel)]="role" style="width:130px" class="form-control ml-2 form-control-sm">
+            <option value="" selected>Select Role</option>
+            <option value="1">ONLINE IID/IED FOR FA</option>
+            <option value="2">OPERATION ASSISTANT 2</option>
+            <option value="2">TRAFFIC CONTROLLER</option>
+            <option value="2">ULC OPERATOR</option>
+            <option value="2">DAILY VESSEL SCHEDULE & POGP</option>
+            <option value="2">PP FRONT OFFICE</option>
+            <option value="2">BERTH PLANNER</option>
           </select>
           <div class="form-group form-inline ml-2">
             <input *ngIf="filterClick" type="text" [bsConfig]="dateConfig" autocomplete="off" class="form-control-sm form-controll-2 mr-2" style="border: 1px solid #ced4da" [(ngModel)]="dateRange" #dp="bsDaterangepicker" bsDaterangepicker placement="bottom"/>
@@ -77,9 +88,33 @@
     <div *ngIf="!leftExpandIcon" class="row px-3 mt-3">
       <div class="hand d-flex align-items-center col-md-6 col-lg-4 col-xl-3 mb-2">
         <!-- <div class="d-flex align-items-center col-4 px-0 yellow-card" [ngClass]="(mode == 'view'|| mode == 'edit') ? 'col-12 br-10' : ''"> -->
-        <div class="d-flex align-items-center col-4 px-0 yellow-card">
+        <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: #11ba04">
           <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
           <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
+          <div class="px-2 text-center col-12">
+            <p class="mb-0 mr-2 font-weight-bold" style="font-size: 25px;border-bottom: 1px solid #dee2e6!important;">50</p>
+            <p class="mb-0 mr-2" style="font-size: 13px; padding-top: 5px;">ACTIVE</p>
+          </div>
+        </div>
+      </div>
+      <div class="hand d-flex align-items-center col-md-6 col-lg-4 col-xl-3 mb-2">
+        <!-- <div class="d-flex align-items-center col-4 px-0 yellow-card" [ngClass]="(mode == 'view'|| mode == 'edit') ? 'col-12 br-10' : ''"> -->
+        <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: #e12020">
+          <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
+          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
+        </div>
+        <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
+          <div class="px-2 text-center col-12">
+            <p class="mb-0 mr-2 font-weight-bold" style="font-size: 25px;border-bottom: 1px solid #dee2e6!important;">20</p>
+            <p class="mb-0 mr-2" style="font-size: 13px; padding-top: 5px;">INACTIVE</p>
+          </div>
+        </div>
+      </div>
+     <!-- <div class="hand d-flex align-items-center col-md-6 col-lg-4 col-xl-3 mb-2">
+        <div class="d-flex align-items-center col-4 px-0 yellow-card">
+          <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
         </div>
         <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
           <div class="px-2 text-center col-12">
@@ -88,10 +123,9 @@
           </div>
         </div>
       </div>
-      <div class="hand d-flex align-items-center col-md-6 col-lg-4 col-xl-3 mb-2">
+       <div class="hand d-flex align-items-center col-md-6 col-lg-4 col-xl-3 mb-2">
         <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: rgb(208, 121, 32)">
           <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-cogs fa-2x"></i></p>
-          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
         </div>
         <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
           <div class="px-2 text-center col-12">
@@ -103,7 +137,6 @@
       <div class="hand d-flex align-items-center col-md-6 col-lg-4 col-xl-3 mb-2">
         <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: rgb(65, 174, 169)">
           <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
-          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
         </div>
         <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
           <div class="px-2 text-center col-12">
@@ -115,7 +148,6 @@
       <div class="hand d-flex align-items-center col-md-6 col-lg-4 col-xl-3 mb-2">
         <div class="d-flex align-items-center col-4 px-0" style="height: 70px; border-radius: 10px 0px 0px 10px;background-color: #aaaac7">
           <p class="mb-0 f-white" style="padding-left: 2rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
-          <!-- <p class="mb-0 f-white" style="padding-left: 2rem!important;"><img style="height: 40px;"  src="../../../../assets/css/images/berth-vessel.svg" alt=""></p> -->
         </div>
         <div class="d-flex align-items-center justify-content-between col-8 px-0" style="height:70px; border-radius: 0px 10px 10px 0px;background-color: white;border: 1px solid #e9edf0;">
           <div class="px-2 text-center col-12">
@@ -123,7 +155,7 @@
             <p class="mb-0 mr-2" style="font-size: 13px; padding-top: 5px;">Vessel Arriving After 24 Hours</p>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
       <!-- <div class="hand d-flex align-items-center" style="width: 24.5%; margin-left:5px; margin-right: 5px">
@@ -161,66 +193,78 @@
 <!--------------------------------------------------------------------- cards(Icons) ------------------------------------------------------>
 <!-- data-toggle="tooltip" data-placement="top" title="Arrived At Anchorage"    -->
 <div *ngIf="leftExpandIcon" class="py-2 px-0 d-flex align-items-center" style="margin-bottom: -13px !important;">
-      <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+
+  <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+    <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: #11ba04">
+      <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
+      <span class="tooltiptext-top">ACTIVE</span>
+    </div>
+  </div>
+  <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
+    <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: #e12020">
+      <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
+      <span class="tooltiptext-top">INACTIVE</span>
+    </div>
+  </div>
+  <!-- <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
         <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: rgb(208, 121, 32)">
           <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-solid f-white fa-eye fa-2x"></i></p>
           <span class="tooltiptext-top">Berthed Vessels</span>
         </div>
       </div>
-
       <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
         <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: rgb(208, 121, 32)">
           <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-cogs fa-2x"></i></p>
           <span class="tooltiptext-top">Arrived At Anchorage</span>
         </div>
       </div>
-
       <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:14px; margin-right: 5px">
         <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: rgb(65, 174, 169)">
           <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
           <span class="tooltiptext-top">Vessel Arriving Within 24 Hours</span>
         </div>
       </div>
-
       <div class="hand hover_tooltip-top d-flex align-items-center" style="width: 24.5%; margin-left:5px; margin-right: 14px">
         <div class="d-flex align-items-center col-12" style="height: 70px; border-radius: 10px 10px 10px 10px;background-color: #aaaac7">
           <p class="mb-0 f-white" style="padding-left: 3rem!important;"><i class="fa fa-clock-o fa-2x"></i></p>
           <span class="tooltiptext-top">Vessel Arriving After 24 Hours</span>
         </div>
-      </div>
-    </div>
+      </div> -->
+  </div>
+<!--------------------------------------------------------- left section(table) ---------------------------------------------------------------------------------------->
 
     <div class="panel panel-default">
       <div class="common-table panel-body">
         <div class="p-3">
-<!--------------------------------------------------------- left section(table) ---------------------------------------------------------------------------------------->
-          <div class="table-responsive" style="max-height: calc(100vh - 300px); overflow-y: auto">
+          <div class="table-responsive" style="max-height: calc(100vh - 310px); overflow-y: auto">
             <table class="table table-hover table-striped">
             <!-- <table class="table table-hover"> -->
               <thead class="table-header">
                 <tr>
-                  <th class="hand" (click)="sorting('firstName')">First Name
+                  <th class="hand" (click)="sorting('firstName')">Login Id
                     <i *ngIf="firstNameSortType == 'asc'&&sortColumnClick == 'firstName'" class="fa fa-long-arrow-up" aria-hidden="true"></i>
                     <i *ngIf="firstNameSortType == 'desc'&&sortColumnClick == 'firstName'" class="fa fa-long-arrow-down" aria-hidden="true"></i>
                   </th>
-                  <th class="hand" (click)="sorting('lastName')">Last Name
+                  <th class="hand" (click)="sorting('lastName')">User Name
                     <i *ngIf="lastNameSortType == 'asc'&&sortColumnClick == 'lastName'" class="fa fa-long-arrow-up" aria-hidden="true"></i>
                     <i *ngIf="lastNameSortType == 'desc' && sortColumnClick == 'lastName'" class="fa fa-long-arrow-down" aria-hidden="true"></i>
                   </th>
-                  <th class="hand" (click)="sorting('status')">Status
+                  <th class="hand" (click)="sorting('status')">User Role
                     <i *ngIf="statusSortType == 'asc' && sortColumnClick == 'status'" class="fa fa-long-arrow-up" aria-hidden="true"></i>
                     <i *ngIf="statusSortType == 'desc' && sortColumnClick == 'status'" class="fa fa-long-arrow-down" aria-hidden="true"></i>
                   </th>
+                  <th>Last Login Time</th>
+                  <th>Group Name</th>
+                  <th>Status</th>
                   <th>More</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody *ngFor="let row of tableData; let i = index">
                 <tr>
-                  <td class="hand blue-under" (click)="view()">{{row?.firstName}}</td>
-                  <td>{{row?.lastName}}</td>
-                  <td>
-                    <!-- <span class="status-circle" [ngClass]="row?.status=='Open' ? 'status-green' : 'status-red'"></span> -->
+                  <td class="hand blue-under" (click)="view()">{{row?.loginId}}</td>
+                  <td class="txt-trunc">{{row?.userName}}</td>
+                  <!-- <td>
                     <span *ngIf="row?.status=='Open'" class="status-circle status-green"></span>
                     <span *ngIf="row?.status=='Planned'" class="status-circle status-red"></span>
                     <span *ngIf="row?.status=='Berthed Vessels'" class="status-circle status-yellow"></span>
@@ -228,49 +272,50 @@
                     <span *ngIf="row?.status=='Vessel Arriving Within 24 Hours'" class="status-circle status-lightblue"></span>
                     <span *ngIf="row?.status=='Vessel Arriving After 24 Hours'" class="status-circle status-purple"></span>
                     {{row?.status}}
+                  </td> -->
+                  <td class="txt-trunc">{{row?.userRole}}</td>
+                  <td class="txt-trunc">{{row?.lastLoginTime}}</td>
+                  <td class="txt-trunc">{{row?.groupName}}</td>
+                  <td class="txt-trunc">
+                    <span *ngIf="row?.status=='ACTIVE'" class="status-circle status-green"></span>
+                    <span *ngIf="row?.status=='INACTIVE'" class="status-circle status-red"></span>
+                    {{row?.status}}
                   </td>
                   <td class="hand"><i [attr.id]="'rowLine' + i" data-toggle="collapse" (click)="collapseRemainingRows(i)" [attr.data-target]="'#demo' + i" class="accordion-toggle" class="fa fa-ellipsis-h"></i></td>
-                  <td>
+                  <td class="txt-trunc">
                     <i class="fa fa-pencil hand" (click)="edit()"></i>
                     <span style="padding-left: 15px"><i data-toggle="modal" data-target="#exampleModal" class="fa fa-trash-o hand mr-3"></i></span>
                   </td>
                 </tr>
+                <!----------------------- expanded row ------------------------->
                 <tr class="hidden-row">
-                  <td colspan="5" class="p-0">
+                  <td colspan="8" class="p-0">
                     <div class="accordian-body collapse" [id]="'demo' + i">
                       <div class="extra-table-content px-3 pt-3">
                         <div class="row">
                           <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Vessel Size</div>
-                            <div class="field-value">{{row?.vesselSize}}</div>
+                            <div class="label-title">Email</div>
+                            <div class="field-value">{{row?.email}}</div>
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Vessel Type</div>
-                            <div class="field-value">{{row?.vesselType}}</div>
+                            <div class="label-title">Phone</div>
+                            <div class="field-value">{{row?.phone}}</div>
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Shipping Agent</div>
-                            <div class="field-value txt-trunc">{{row?.shippingAgent}}</div>
+                            <div class="label-title">	IC/Passport</div>
+                            <div class="field-value">{{row?.passport}}</div>
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Loa</div>
-                            <div class="field-value">{{row?.loa}}</div>
+                            <div class="label-title">Designation</div>
+                            <div class="field-value">{{row?.designation}}</div>
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Grt</div>
-                            <div class="field-value">{{row?.grt}}</div>
+                            <div class="label-title">Staff Group</div>
+                            <div class="field-value">{{row?.staffGroup}}</div>
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Last Port</div>
-                            <div class="field-value">{{row?.lastName}}</div>
-                          </div>
-                          <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Next Port</div>
-                            <div class="field-value">{{row?.nextPort}}</div>
-                          </div>
-                          <div class="col-xl-3 col-sm-3 col-md-3">
-                            <div class="label-title">Final Port</div>
-                            <div class="field-value">{{row?.finalPort}}</div>
+                            <div class="label-title">User Group</div>
+                            <div class="field-value">{{row?.userGroup}}</div>
                           </div>
                           <div class="col-xl-3 col-sm-3 col-md-3">
                             <div class="label-title">Created By</div>
@@ -328,7 +373,7 @@
      <div class="action-bar">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <h6 class="m-0">Smith</h6>
+          <h6 class="m-0">KGL1000777</h6>
         </div>
         <div class="col-md-6 text-right">
           <span class="hover_tooltip-top" aria-hidden="true" (click)="mode='edit'"><i class="fa fa-pencil hand mr-3"></i>
@@ -350,112 +395,120 @@
       <!----------------------------------------------------------- view design -------------------------------------------------------------------->
       <div *ngIf="mode=='view'" class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">First Name</div>
-          <div class="field-value">Smith</div>
+          <div class="label-title">User Name</div>
+          <div class="field-value">FARHANA</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Last Name</div>
-          <div class="field-value">Mathias</div>
+          <div class="label-title">User Role</div>
+          <div class="field-value">ONLINE IID/IED FOR FA</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Last Login Time</div>
+          <!-- <div class="field-value"><span class="status-circle status-green"></span>Open</div> -->
+          <div class="field-value">01/08/2022 07:54</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Group Name</div>
+          <div class="field-value">KGL KUL SDN BHD</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Status</div>
-          <div class="field-value"><span class="status-circle status-green"></span>Open</div>
+          <div class="field-value"><span class="status-circle status-green"></span>ACTIVE</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Vessel Size</div>
-          <div class="field-value">1000</div>
+          <div class="label-title">Email</div>
+          <div class="field-value">SEADIVISIO2@KGLKUL.COM</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Vessel Type</div>
-          <div class="field-value">Conventional</div>
+          <div class="label-title">Phone</div>
+          <div class="field-value">31694000</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Shipping Agent</div>
-          <div class="field-value">LBH SHIPPING SERVICES (M) SDN BHD</div>
+          <div class="label-title">IC/Passport</div>
+          <div class="field-value"></div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Loa</div>
-          <div class="field-value">229.00</div>
+          <div class="label-title">Designation</div>
+          <div class="field-value">OPERATION</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Grt</div>
-          <div class="field-value">43502</div>
+          <div class="label-title">Staff Group</div>
+          <div class="field-value">GROUP C</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Last Port</div>
-          <div class="field-value">Mathias</div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Next Port</div>
-          <div class="field-value">Aachen</div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-          <div class="label-title">Final Port</div>
-          <div class="field-value">-</div>
+          <div class="label-title">User Group</div>
+          <div class="field-value">KGL KUL SDN BHD</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Created By</div>
-          <div class="field-value">Smith Jonas</div>
+          <div class="field-value">PRIVAPORT</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
           <div class="label-title">Created Date</div>
-          <div class="field-value">03/07/2022</div>
+          <div class="field-value">30/03/2015 00:50</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-+ col-lg-4 col-xl-4">
           <div class="label-title">Modified By</div>
-          <div class="field-value">Smith Jonas</div>
+          <div class="field-value">NOOR ISMAH IZZATI</div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-+ col-lg-4 col-xl-4">
           <div class="label-title">Modified Date</div>
-          <div class="field-value">03/07/2022</div>
+          <div class="field-value">08/12/2021 16:52</div>
         </div>
       </div>
 
       <!-------------------------------------- add/edit design------------------------------------------------------------->
        <div *ngIf="mode=='add'||mode=='edit'" class="row">
           <div class="col-4">
-            <label class="label-title required f-blue" style="font-weight: bold;">First Name</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="First Name">
+            <label class="label-title required f-blue" style="font-weight: bold;">Login Id</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Login Id">
           </div>
           <div class="col-4">
-            <label class="label-title f-blue" style="font-weight: bold;">Last Name</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Last Name">
+            <label class="label-title f-blue" style="font-weight: bold;">User Name</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="User Name">
           </div>
           <div class="col-4">
-            <label class="label-title required f-blue" style="font-weight: bold;">Status</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Status">
+            <label class="label-title required f-blue" style="font-weight: bold;">Password</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Password">
           </div>
 
           <div class="col-4">
-            <label class="label-title required f-blue" style="font-weight: bold;">Vessel Size</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Size">
+            <label class="label-title required f-blue" style="font-weight: bold;">Email</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Email">
           </div>
           <div class="col-4">
-            <label class="label-title required f-blue" style="font-weight: bold;">Vessel Type</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Type">
+            <label class="label-title required f-blue" style="font-weight: bold;">Phone</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Phone">
           </div>
           <div class="col-4">
-            <label class="label-title f-blue" style="font-weight: bold;">Shipping Agent</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Shipping Agent">
+            <label class="label-title f-blue" style="font-weight: bold;">IC/Passport</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="IC/Passport">
           </div>
 
           <div class="col-4">
-            <label class="label-title required f-blue" style="font-weight: bold;">Grt</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Grt">
+            <label class="label-title required f-blue" style="font-weight: bold;">User Group</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="User Group">
           </div>
           <div class="col-4">
-            <label class="label-title f-blue" style="font-weight: bold;">Last Port</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Last Port">
+            <label class="label-title f-blue" style="font-weight: bold;">Role</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Role">
           </div>
-          <div class="col-4">
-            <label class="label-title f-blue" style="font-weight: bold;">Next Port</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Next Port">
+          <div class="col-4"></div>
+          <div class="col-4" style="padding-top: 25px;">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="label-title f-blue" for="exampleCheck1">Account Locked</label>
+            </div>
+          </div>
+          <div class="col-4" style="padding-top: 25px;">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="label-title f-blue" for="exampleCheck1">Active</label>
+            </div>
           </div>
 
-          <div class="col-4">
-            <label class="label-title required f-blue" style="font-weight: bold;">Final Port</label>
-            <input type="text" class="form-control form-control-sm-new placeholder-title"  placeholder="Final Port">
-          </div>
+
+
       </div>
     </div>
     <div *ngIf="mode=='add'||mode=='edit'" class="text-right p-3" style="background-color: #e9e5e5;padding: 30px">
@@ -479,7 +532,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete 'Smith' User Group ?
+        Are you sure you want to delete 'FARHANA' User ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deleteSave()">Yes</button>

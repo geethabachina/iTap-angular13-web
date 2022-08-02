@@ -30,6 +30,7 @@ import { PlanningComponent } from './core/planning/planning.component';
 import { CoreComponent } from './core/core.component';
 import { AddUserGroupComponent } from './core/admin/user-group/add-user-group/add-user-group.component';
 import { CardsMenuComponent } from './core/cards-menu/cards-menu.component';
+import { IidBillingComponent } from './core/billing/iid-billing/iid-billing.component';
 
 
 const adminRoutes: Routes = [
@@ -42,6 +43,13 @@ const adminRoutes: Routes = [
     component: AddUserGroupComponent,
   }
 ];
+const billingRoutes: Routes = [
+  {
+    path: 'iidBilling',
+    component: IidBillingComponent,
+  }
+];
+
 const planningRoutes: Routes = [
   {
     path: 'shipParticular',
@@ -83,6 +91,11 @@ const routes: Routes = [
         path:'admin',
         component: AdminComponent,
         children: adminRoutes,
+      },
+      {
+        path:'billing',
+        component: AdminComponent,
+        children: billingRoutes,
       },
       {
         path:'planning',

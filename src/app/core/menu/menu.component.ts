@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -12,28 +13,24 @@ export class MenuComponent implements OnInit {
   // options: any = { multi: false };
   refreshStatus: Subscription;
   bigMenu: any = true;
-  menus: any = [
-    // { name: "Home",iconClass: "fa fa-home",active: true,
-    //   submenu: [
-    //     { name: "Change Password", url: "#" },
-    //   ]
-    // },
+  menus: any;
+  menusAll: any = [
     { name: "Administration", iconClass: "fa fa-wrench",active: false,
       submenu: [
-        { name: "User Administration",submenu: [
-          { name: "User Groups",iconClass: "fa fa-users", url: "core/admin/userGroup" },
+        { name: "User Administration",active: false,submenu: [
+          { name: "User Groups",iconClass: "fa fa-users" },
           { name: "User Roles",iconClass: "fa fa-cogs", url: "#" },
-          { name: "Users",iconClass: "fa fa-user", url: "#" },
+          { name: "Users",iconClass: "fa fa-user",url: "core/admin/userGroup" },
           { name: "User Matrix Report",iconClass: "fa fa-id-card-o", url: "#" }
          ]
         },
-        { name: "Planning",submenu: [
+        { name: "Planning",active: false,submenu: [
           { name: "Ship", iconClass: "fa fa-clock-o", url: "core/planning/shipParticular" },
           { name: "Designation", iconClass: "fa fa-suitcase", url: "#" },
           { name: "Type of Leave", iconClass: "fa fa-server", url: "#" },
          ]
         },
-        { name: "Berth Plan", url: "#",submenu: [
+        { name: "Berth Plan",active: false, url: "#",submenu: [
           { name: "Terminal", iconClass: "fa fa-clock-o", url: "#" },
           { name: "Wharf", iconClass: "fa fa-suitcase", url: "#" },
           { name: "Yard", iconClass: "fa fa-server", url: "#" },
@@ -42,13 +39,13 @@ export class MenuComponent implements OnInit {
           { name: "ship Stack height list", iconClass: "fa fa-list", url: "#" },
          ]
        },
-       { name: "Marine", url: "#",submenu: []},
-       { name: "Maintenance", url: "#",submenu: []},
-       { name: "Warehouse", url: "#",submenu: []},
-       { name: "Cargo", url: "#",submenu: []},
-       { name: "Service", url: "#",submenu: []},
-       { name: "Voucher", url: "#",submenu: []},
-       { name: "Area Duty Designation", url: "#",submenu: []},
+       { name: "Marine", url: "#",active: false,submenu: []},
+       { name: "Maintenance", url: "#",active: false,submenu: []},
+       { name: "Warehouse", url: "#",active: false,submenu: []},
+       { name: "Cargo", url: "#",active: false,submenu: []},
+       { name: "Service", url: "#",active: false,submenu: []},
+       { name: "Voucher", url: "#",active: false,submenu: []},
+       { name: "Area Duty Designation", url: "#",active: false,submenu: []},
        { name: "Incentive Settings", url: "#"},
        { name: "Email Settings", url: "#"},
        { name: "Public Holidays", url: "#"},
@@ -66,52 +63,65 @@ export class MenuComponent implements OnInit {
        { name: "Delay Reason", url: "#"},
       ]
     },
-    // { name: "Planning",iconClass: "fa fa-calendar",active: false,
-    //   submenu: [
-    //     { name: "Ship Perticulars", url: "#" },
-    //     { name: "Ship Visit", url: "#" },
-    //     { name: "Ship Shifting", url: "#" },
-    //     { name: "Staff Leave", url: "#" },
-    //     { name: "Roster Plan", url: "#" },
-    //     { name: "Roster Booking", url: "#" },
-    //     { name: "SOS Handover Booking", url: "#" },
-    //     { name: "Vessel Operation Plan", url: "#" },
-    //     { name: "Vessel Productivity Plan", url: "#" },
-    //     { name: "Memo", url: "#" },
-    //     { name: "Gang Booking", url: "#" },
-    //     { name: "Pilot Booking", url: "#" },
-    //     { name: "Pilot Leave", url: "#" },
-    //     { name: "Pilot Roster Plan", url: "#" },
-    //     { name: "Approved Booking", url: "#" }
-    //   ]
-    // },
-    // { name: "Berth Planning",iconClass: "fa fa-calendar",active: false,
-    //   submenu: [
-    //     { name: "One Day", url: "#" },
-    //     { name: "Two Days", url: "#" },
-    //     { name: "Three Days", url: "#" },
-    //     { name: "Seven Days", url: "#" }
-    //   ]
-    // },
-    // { name: "Marine Control",iconClass: "fa fa-wrench",active: false,
-    //   submenu: [
-    //     { name: "Ship Movement", url: "#" }
-    //   ]
-    // },
-    // { name: "Documentation",iconClass: "fa fa-file-text",active: false,submenu: []},
-    // { name: "Warehouse",iconClass: "fa fa-home",active: false,submenu: []},
-    // { name: "Billing",iconClass: "fa fa-file-text",active: false,submenu: []},
-    // { name: "LBT",iconClass: "fa fa-snowflake-o",active: false,submenu: []},
-    // { name: "STEVEDORE",iconClass: "fa fa-window-restore",active: false,submenu: []},
-    // { name: "Operations",iconClass: "fa fa-gavel",active: false,submenu: []},
-    // { name: "Finance",iconClass: "fa fa-money",active: false,submenu: []},
-    // { name: "Gate",iconClass: "fa fa-building-o",active: false,submenu: []},
-    // { name: "Reports",iconClass: "fa fa-file-text-o",active: false,submenu: []},
-    // { name: "Themes",iconClass: "fa fa-heart",active: false,submenu: []},
+    { name: "Planning",iconClass: "fa fa-calendar",active: false,
+      submenu: [
+        { name: "Ship Perticulars", url: "#" },
+        { name: "Ship Visit", url: "#" },
+        { name: "Ship Shifting", url: "#" },
+        { name: "Staff Leave", url: "#" },
+        { name: "Roster Plan", url: "#" },
+        { name: "Roster Booking", url: "#" },
+        { name: "SOS Handover Booking", url: "#" },
+        { name: "Vessel Operation Plan", url: "#" },
+        { name: "Vessel Productivity Plan", url: "#" },
+        { name: "Memo", url: "#" },
+        { name: "Gang Booking", url: "#" },
+        { name: "Pilot Booking", url: "#" },
+        { name: "Pilot Leave", url: "#" },
+        { name: "Pilot Roster Plan", url: "#" },
+        { name: "Approved Booking", url: "#" }
+      ]
+    },
+    { name: "Berth Planning",iconClass: "fa fa-calendar",active: false,
+      submenu: [
+        { name: "One Day", url: "#" },
+        { name: "Two Days", url: "#" },
+        { name: "Three Days", url: "#" },
+        { name: "Seven Days", url: "#" }
+      ]
+    },
+    { name: "Marine Control",iconClass: "fa fa-wrench",active: false,
+      submenu: [
+        { name: "Ship Movement", url: "#" }
+      ]
+    },
+    { name: "Documentation",iconClass: "fa fa-file-text",active: false,submenu: []},
+    { name: "Warehouse",iconClass: "fa fa-home",active: false,submenu: []},
+    { name: "Billing",iconClass: "fa fa-file-text",active: false,
+      submenu: [
+        { name: "Deposite",active: false, url: "#"},
+        { name: "Contractor Payment",active: false, url: "#"},
+        { name: "IID/IED Billing",active: false,url: "core/billing/iidBilling"},
+        { name: "Billing Checklist",active: false, url: "#"},
+        { name: "General Billing",active: false, url: "#"},
+        { name: "Service Voucher Billing",active: false, url: "#"},
+        { name: "Port Police Service Voucher Billing",active: false, url: "#"},
+        { name: "Split Account",active: false, url: "#",submenu: [{ name: "Request",iconClass: "fa fa-clock-o", url: "#" },{ name: "Approval",iconClass: "fa fa-clock-o", url: "#" }]},
+        { name: "LCB Penalty Billing",active: false, url: "#"},
+      ]
+    },
+    { name: "LBT",iconClass: "fa fa-snowflake-o",active: false,submenu: []},
+    { name: "STEVEDORE",iconClass: "fa fa-window-restore",active: false,submenu: []},
+    { name: "Operations",iconClass: "fa fa-gavel",active: false,submenu: []},
+    { name: "Finance",iconClass: "fa fa-money",active: false,submenu: []},
+    { name: "Gate",iconClass: "fa fa-building-o",active: false,submenu: []},
+    { name: "Reports",iconClass: "fa fa-file-text-o",active: false,submenu: []},
+    { name: "Themes",iconClass: "fa fa-heart",active: false,submenu: []},
   ];
 
   constructor(
     private dashboardService : DashboardService,
+    private router: Router
   ) {
     this.refreshStatus = this.dashboardService.refreshCollapse$.subscribe((item:any) => {
       this.bigMenu = item;
@@ -121,6 +131,22 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     //this.config = this.mergeConfig(this.options);
+    debugger
+    this.menus = [];
+    for(var i=0;i<=this.menusAll.length-1;i++){
+      if(this.router.url.includes("core/admin") && this.menusAll[i].name=="Administration" ){
+        this.menus.push(this.menusAll[i]);
+        if(this.router.url.includes("core/admin/userGroup")){
+          this.menusAll[i].submenu[0].active = true; //to expand sub submenu
+        }
+      }
+      else if(this.router.url.includes("core/billing") && this.menusAll[i].name=="Billing" ){
+        this.menus.push(this.menusAll[i]);
+        if(this.router.url.includes("core/billing/iidBilling")){
+          this.menusAll[i].submenu[2].active = true; //to apply hover class
+        }
+      }
+    }
   }
 
   collapseAll(){

@@ -1,0 +1,332 @@
+<div id="userGroup" class="">
+<ngx-spinner>
+<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+<span class="sr-only">Loading...</span>
+</ngx-spinner>
+
+  <!-- left side  -->
+  <div id="leftSection" class="container-wrapper">
+    <div class="action-bar">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">Billing</li>
+              <li class="breadcrumb-item">IID/IED Billing</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-md-6 text-right">
+          <span *ngIf="!leftExpandIcon" class="hover_tooltip-top hand" (click)="leftMinimise()"><i class="fa fa-th-large" aria-hidden="true"></i>
+            <span class="tooltiptext-top">Mininize</span>
+          </span>
+          <span *ngIf="leftExpandIcon" class="hover_tooltip-top hand" (click)="leftExpand()"><i class="fa fa-list"></i>
+            <span class="tooltiptext-top">Maximize</span>
+          </span>
+        </div>
+      </div>
+    </div>
+<!------------------------------------------------------- filters ---------------------------------------------------------------->
+    <div class="px-3 pt-3">
+      <div class="row align-items-start">
+        <div class=" col-md-10 col-lg-10 col-xl-10 form-inline">
+          <button type="button" class="hover_tooltip-top btn btn-primary btn-sm" (click)="add()"><i class="fa fa-plus" aria-hidden="true"></i>
+            <span class="tooltiptext-top">Add Bill</span>
+          </button>
+          <button (click)="filterClick = !filterClick" type="button" class="hover_tooltip-top btn btn-primary btn-sm ml-2"><i class="fa fa-filter" aria-hidden="true"></i>
+            <span class="tooltiptext-top">Filter</span>
+          </button>
+          <div class="form-group form-inline ml-2">
+            <input *ngIf="filterClick" type="text" [bsConfig]="dateConfig" autocomplete="off" class="form-control-sm form-controll-2 mr-2" style="border: 1px solid #ced4da" [(ngModel)]="dateRange" #dp="bsDaterangepicker" bsDaterangepicker placement="bottom"/>
+            <button *ngIf="filterClick" type="button" class="btn btn-primary btn-sm" (click)="reset()"> Reset</button>
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 mb-0">
+          <input type="text" class="form-control form-control-sm" placeholder="Search..."/>
+        </div>
+      </div>
+    </div>
+
+
+
+<!--------------------------------------------------------- left section(table) ---------------------------------------------------------------------------------------->
+    <div class="panel panel-default">
+      <div class="common-table panel-body">
+        <div class="p-3">
+          <div class="table-responsive" style="max-height: calc(100vh - 230px); overflow-y: auto">
+            <table class="table table-hover table-striped">
+              <thead class="table-header">
+                <tr>
+                  <th class="hand" (click)="sorting('firstName')">Bill Number
+                    <i *ngIf="firstNameSortType == 'asc'&&sortColumnClick == 'firstName'" class="fa fa-long-arrow-up" aria-hidden="true"></i>
+                    <i *ngIf="firstNameSortType == 'desc'&&sortColumnClick == 'firstName'" class="fa fa-long-arrow-down" aria-hidden="true"></i>
+                  </th>
+                  <th class="hand" (click)="sorting('lastName')">Vessel Name
+                    <i *ngIf="lastNameSortType == 'asc'&&sortColumnClick == 'lastName'" class="fa fa-long-arrow-up" aria-hidden="true"></i>
+                    <i *ngIf="lastNameSortType == 'desc' && sortColumnClick == 'lastName'" class="fa fa-long-arrow-down" aria-hidden="true"></i>
+                  </th>
+                  <th class="hand" (click)="sorting('status')">Vessel Type
+                    <i *ngIf="statusSortType == 'asc' && sortColumnClick == 'status'" class="fa fa-long-arrow-up" aria-hidden="true"></i>
+                    <i *ngIf="statusSortType == 'desc' && sortColumnClick == 'status'" class="fa fa-long-arrow-down" aria-hidden="true"></i>
+                  </th>
+                  <th>SCN</th>
+                  <th>Document No</th>
+                  <th>Payment Mode</th>
+                  <th>More</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let row of tableData; let i = index">
+                <tr>
+                  <td class="hand blue-under" (click)="view()">{{row?.billNumber}}</td>
+                  <td class="txt-trunc">{{row?.vesselName}}</td>
+                  <td class="txt-trunc">{{row?.vesselType}}</td>
+                  <td class="txt-trunc">{{row?.svn}}</td>
+                  <td class="txt-trunc">{{row?.documentNo}}</td>
+                  <td class="txt-trunc">{{row?.paymentMode}}</td>
+                  <td class="hand"><i [attr.id]="'rowLine' + i" data-toggle="collapse" (click)="collapseRemainingRows(i)" [attr.data-target]="'#demo' + i" class="accordion-toggle" class="fa fa-ellipsis-h"></i></td>
+                  <td class="txt-trunc">
+                    <i class="fa fa-pencil hand" (click)="edit()"></i>
+                    <span style="padding-left: 15px"><i data-toggle="modal" data-target="#exampleModal" class="fa fa-trash-o hand mr-3"></i></span>
+                  </td>
+                </tr>
+                <!----------------------- expanded row ------------------------->
+                <tr class="hidden-row">
+                  <td colspan="8" class="p-0">
+                    <div class="accordian-body collapse" [id]="'demo' + i">
+                      <div class="extra-table-content px-3 pt-3">
+                        <div class="row">
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Bill To Customer</div>
+                            <div class="field-value">{{row?.billToCustomer}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Bill Date</div>
+                            <div class="field-value">{{row?.billDate}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">	Billed Amount</div>
+                            <div class="field-value">{{row?.billedAmount}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Post Date</div>
+                            <div class="field-value">{{row?.postDate}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Cancelled Date</div>
+                            <div class="field-value">{{row?.cancelledDate}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Created By</div>
+                            <div class="field-value">{{row?.createdBy}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Created Date</div>
+                            <div class="field-value">{{row?.createdDate}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Modified By</div>
+                            <div class="field-value">{{row?.modifiedBy}}</div>
+                          </div>
+                          <div class="col-xl-3 col-sm-3 col-md-3">
+                            <div class="label-title">Modified Date</div>
+                            <div class="field-value">{{row?.modifiedDate}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row align-items-start pt-3">
+            <div class="col-md-4 align-items-center d-flex">
+              <span class="title-show">Show</span>
+              <select class="form-control form-control-sm drop-show ml-1">
+                <option value="10">10</option>
+                <option value="25" selected>25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+            <div class="col-md-4 text-center">
+              <span class="result-showing">
+                <span>Showing <span>25</span> of 350 </span>
+              </span>
+            </div>
+            <div class="col-md-4 text-right">
+              <button type="button" class="btn btn-sm btn btn-outline-secondary f-blue">
+                Show more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-------------------------------------------------------------------- right side  ------------------------------------------------------->
+ <div id="rightSection" class="container-wrapper ml-3 w-100 overview-panel">
+     <div class="action-bar">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h6 *ngIf="mode=='add'" class="m-0">Add Bill</h6>
+          <h6 *ngIf="mode=='edit'" class="m-0">Edit Bill</h6>
+          <h6 *ngIf="mode=='view'" class="m-0">0001054431</h6>
+        </div>
+        <div class="col-md-6 text-right">
+          <span class="hover_tooltip-top" aria-hidden="true" (click)="mode='edit'"><i class="fa fa-pencil hand mr-3"></i>
+            <span class="tooltiptext-top">Edit</span>
+          </span>
+          <span class="hover_tooltip-top" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o hand mr-3"></i>
+            <span class="tooltiptext-top">Delete</span>
+          </span>
+          <span *ngIf="rightExpandIcon" class="hover_tooltip-top" (click)="rightExpand()"><i class="fa fa-expand hand"></i>
+            <span class="tooltiptext-top">Expand</span>
+          </span>
+          <span *ngIf="!rightExpandIcon" class="hover_tooltip-top" (click)="rightMinimise()"><i class="fa fa-compress hand"></i>
+            <span class="tooltiptext-top">Collapse</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!----------------------------------------------------------- view design -------------------------------------------------------------------->
+    <div class="p-3 overview-body" style="height: calc(100vh - 173px);">
+      <div *ngIf="mode=='view'" class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Vessel Name</div>
+          <div class="field-value">CANOPUS LEADER</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Vessel Type</div>
+          <div class="field-value">RORO</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">SCN</div>
+          <div class="field-value">227BLH</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Document No</div>
+          <div class="field-value">WPI086866</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Payment Mode</div>
+          <div class="field-value">LEDGER</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Bill To Customer</div>
+          <div class="field-value">JOMAJU SDN BHD - TJ039</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Bill Date</div>
+          <div class="field-value">02/08/2022</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Billed Amount</div>
+          <div class="field-value">1209</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Post Date</div>
+          <div class="field-value">02/08/2022</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Cancelled Date</div>
+          <div class="field-value">02/08/2022</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Created By</div>
+          <div class="field-value">NOOR ISMAH IZZATI</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+          <div class="label-title">Created Date</div>
+          <div class="field-value">02/08/2022 00:50</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-+ col-lg-4 col-xl-4">
+          <div class="label-title">Modified By</div>
+          <div class="field-value">NOOR ISMAH IZZATI</div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-+ col-lg-4 col-xl-4">
+          <div class="label-title">Modified Date</div>
+          <div class="field-value">02/08/2022 16:52</div>
+        </div>
+      </div>
+
+      <!-------------------------------------- add/edit design------------------------------------------------------------->
+       <div *ngIf="mode=='add'||mode=='edit'" class="row">
+          <div class="col-4">
+            <label class="label-title required f-blue" style="font-weight: bold;">Vessel Name</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Name">
+          </div>
+          <div class="col-4">
+            <label class="label-title f-blue" style="font-weight: bold;">Vessel Type</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Vessel Type">
+          </div>
+          <div class="col-4">
+            <label class="label-title required f-blue" style="font-weight: bold;">SCN</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="SCN">
+          </div>
+
+          <div class="col-4">
+            <label class="label-title required f-blue" style="font-weight: bold;">Document No</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Document No">
+          </div>
+          <div class="col-4">
+            <label class="label-title required f-blue" style="font-weight: bold;">Payment Mode</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Payment Mode">
+          </div>
+          <div class="col-4">
+            <label class="label-title f-blue" style="font-weight: bold;">Bill To Customer</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Bill To Customer">
+          </div>
+
+          <div class="col-4">
+            <label class="label-title required f-blue" style="font-weight: bold;">Bill Date</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Bill Date">
+          </div>
+          <div class="col-4">
+            <label class="label-title f-blue" style="font-weight: bold;">Billed Amount</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Billed Amount">
+          </div>
+          <div class="col-4">
+            <label class="label-title f-blue" style="font-weight: bold;">Post Date</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Post Date">
+          </div>
+          <div class="col-4">
+            <label class="label-title f-blue" style="font-weight: bold;">Cancelled Date</label>
+            <input type="text" class="form-control form-control-sm-new placeholder-title" style="margin-bottom: 10px;" placeholder="Cancelled Date">
+          </div>
+
+
+      </div>
+    </div>
+    <div *ngIf="mode=='add'||mode=='edit'" class="text-right p-3" style="background-color: #e9e5e5;padding: 30px">
+      <button class="btn btn-primary btn-custom" (click)="save()">Save</button>
+      <button class="btn btn-outline-secondary btn-custom f-black" (click)="view()">Cancel</button>
+    </div>
+  </div>
+
+</div>
+
+<!----------------------------------------------- delete Modal --------------------------------------------------------------->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete 'FARHANA' User ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="deleteSave()">Yes</button>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+

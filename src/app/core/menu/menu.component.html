@@ -14,11 +14,15 @@
         <div class="collapse second-level show" [attr.id]="'menu' + i" aria-expanded="false">
           <ul class="flex-column pl-2 nav">
             <li *ngFor="let submenu of menu.submenu; let j = index" class="child nav-item">
-              <a class="text-truncate collapsed py-1" [ngClass]="submenu.submenu ? 'nav-link' : ''" [id]="'submenuIcon' + i + j"
+              <a *ngIf="!submenu.url" class="text-truncate collapsed py-1" [ngClass]="submenu.submenu ? 'nav-link' : ''" [id]="'submenuIcon' + i + j"
                 data-toggle="collapse" (click)="collapseSubMenu(i, j)" [attr.data-target]="'#submenu' + i + j">
                 <span class="hand">{{ submenu.name }}</span>
               </a>
-              <div *ngIf="submenu.submenu" class="collapse third-level py-2" [attr.id]="'submenu' + i + j" aria-expanded="false">
+              <a *ngIf="submenu.url" class="text-truncate collapsed py-1" routerLinkActive="active" routerLink="/{{ submenu.url }}" [ngClass]="submenu.submenu ? 'nav-link' : submenu.active?'active-bg':''" [id]="'submenuIcon' + i + j"
+                data-toggle="collapse" (click)="collapseSubMenu(i, j)" [attr.data-target]="'#submenu' + i + j">
+                <span class="hand">{{ submenu.name }}</span>
+              </a>
+              <div *ngIf="submenu.submenu" class="collapse third-level py-2" [ngClass]="submenu.active ? 'show' : ''" [attr.id]="'submenu' + i + j" aria-expanded="false">
                 <ul *ngIf="submenu.submenu" class="flex-column nav">
                   <li *ngFor="let submenu2 of submenu.submenu" class="nav-item">
                     <a class="nav-link p-1 text-truncate" routerLinkActive="active" routerLink="/{{ submenu2.url }}">

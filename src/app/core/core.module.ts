@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { PlanningModule } from './planning/planning.module';
 import { AdminModule } from './admin/admin.module';
+import { BillingModule } from './billing/billing.module';
 
 import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core.component';
@@ -16,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
 import { PlanningComponent } from './planning/planning.component';
 import { CardsMenuComponent } from './cards-menu/cards-menu.component';
+import { BillingComponent } from './billing/billing.component';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { CardsMenuComponent } from './cards-menu/cards-menu.component';
     //ReactiveFormsModule,
     PlanningModule,
     AdminModule,
+    BillingModule
   ],
   declarations: [
     LoginComponent,
@@ -37,7 +40,8 @@ import { CardsMenuComponent } from './cards-menu/cards-menu.component';
     DashboardComponent,
     AdminComponent,
     PlanningComponent,
-    CardsMenuComponent
+    CardsMenuComponent,
+    BillingComponent
   ]
 })
 export class CoreModule { }
